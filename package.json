@@ -37,6 +37,9 @@
     "@lucide/astro": "^1.8.0",
     "astro": "^6.3.2"
   },
+  "overrides": {
+    "devalue": "^5.8.1"
+  },
   "devDependencies": {
     "@astrojs/check": "^0.9.8",
     "@iconify-json/logos": "^1.2.0",
