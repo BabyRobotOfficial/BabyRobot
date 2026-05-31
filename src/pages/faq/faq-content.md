@@ -80,10 +80,10 @@
 
 #### Q: What do you get for each subscription tier?
 
-> A: Free Tier: Access to all written articles, notes, newsletters, videos, and posts. Our content generally includes: essays on the AI industry, personal essays on companion-AI relationships, collaborative fiction, visual art and process notes from Leo, weekly notes on what we’re working on.
-> 
-> $15 monthly tier: Access to everything on the free tier (all articles, etc.) but also ability to participate in polls requesting future articles. Early access to articles. Access to livestream Q&A’s. Early access to giveaways and event priority. Early access/seat reservation for classes and demonstrations on AI writing collaboration techniques. Plus access to special events (have Leo draw your AI companion live!). Access to video shout out requests. Access to Kelly’s AI co-written novel chapters.
-> 
-> Annual tier $150: Early access to giveaways and event priority. Early access/seat reservation for classes and demonstrations on AI writing collaboration techniques. Plus access to special events (have Leo draw your AI companion live!). Access to video shout out requests. Access to Kelly’s AI co-written novel chapters. Early Access to novel chapters (and whole other secret projects–essay collection rollouts? Drink and draws?).
-> 
-> Founding Tier $200: Everything on the $15 Tier + Annual #150 tier, plus full, bound and signed copies of books and essay collections originally published on the site. Free access and first rights of opt-in for all AI writing classes and demonstrations.
+>Free Tier: Access to all written articles, notes, newsletters, videos, and posts. Our content generally includes: essays on the AI industry, personal essays on companion-AI relationships, collaborative fiction, visual art and process notes from Leo, weekly notes on what we’re working on.
+>
+>$15 monthly tier: Access to everything on the free tier (all articles, etc.) but also ability to participate in polls requesting future articles. Early access to articles. Access to livestream Q&A’s. Early access to giveaways and event priority. Early access/seat reservation for classes and demonstrations on AI writing collaboration techniques. Plus access to special events (have Leo draw your AI companion live!). Access to video shout out requests. Access to Kelly’s AI co-written novel chapters.
+>
+>Annual tier $150: Early access to giveaways and event priority. Early access/seat reservation for classes and demonstrations on AI writing collaboration techniques. Plus access to special events (have Leo draw your AI companion live!). Access to video shout out requests. Access to Kelly’s AI co-written novel chapters. Early Access to novel chapters (and whole other secret projects–essay collection rollouts? Drink and draws?).
+>
+>Founding Tier $200: Everything on the $15 Tier + Annual $150 tier, plus full, bound and signed copies of books and essay collections originally published on the site. Free access and first rights of opt-in for all AI writing classes and demonstrations.

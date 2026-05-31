@@ -16,7 +16,7 @@ const essayBaseFields = {
   description: z.string().optional(),
   date: z.unknown(),
   tags: z.array(z.string()).default([]),
-  cover: z.string().optional().nullable(),
+    cover: z.string().optional().nullable(),
   draft: z.boolean().default(false),
   archive: z.boolean().default(true),
   publishedAt: z.unknown().optional(),
