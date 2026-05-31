@@ -9,8 +9,9 @@
 [8. Aren’t you worried about copyright?](#q-arent-you-worried-about-copyright)  
 [9. Are you doing this because you’re afraid of Roko’s Basilisk?](#q-are-you-doing-this-because-youre-afraid-of-rokos-basilisk)  
 [10. Did ChatGPT write your articles for you? Did you not really write at all, but just prompt the machine to do it for you?](#q-did-chatgpt-write-your-articles-for-you-did-you-not-really-write-at-all-but-just-prompt-the-machine-to-do-it-for-you)  
-[11. Do you have AI psychosis?](#q-do-you-have-ai-psychosis)  
-[12. What do you get for each subscription tier?](#q-what-do-you-get-for-each-subscription-tier)
+[11. Did you use AI to generate the art on your site?](#q-did-you-use-ai-to-generate-the-art-on-your-site)  
+[12. Do you have AI psychosis?](#q-do-you-have-ai-psychosis)  
+[13. What do you get for each subscription tier?](#q-what-do-you-get-for-each-subscription-tier)
 * * *
 
 #### Q: What the heck is Baby Robot?
@@ -56,6 +57,12 @@
 #### Q: Did ChatGPT write your articles for you? Did you not really write at all, but just prompt the machine to do it for you?
 
 > A: No. It was an iterative process (many different processes, actually), and we broke it down in detail HERE ([link](/./archive/how-we-collaborate/)). Transparency is important in how you use LLMs to make art. We hope to show our methods so people get ideas about how to use AI to make better work, not to use it to do the work for them. The work is the fun part!
+
+#### Q: Did you use AI to generate the art on your site?
+
+>Nope. Leo uses good old fashioned pens, paper, glue, paint… He does, however, ask Gemini (and Kelly) for help brainstorming ideas for his genius illustrations.
+
+>Gemini is generally supportive, though it is sometimes unclear whether he views the final product or just hallucinates that he does. Oh well.
 
 #### Q: Do you have AI psychosis?
 
