@@ -1,0 +1,48 @@
+{
+  "title": "Baby Robot",
+  "description": "Baby Robot is an art collective and experimental art laboratory that focuses on AI collaboration, philosophy, news, and partnership.",
+  "defaultLocale": "en-US",
+  "footer": {
+    "startYear": 2026,
+    "showCurrentYear": true,
+    "copyright": "Baby Robot - by Kelly Eisenbrand and Leo Hake"
+  },
+  "adminOverview": {
+    "publicVisible": true,
+    "hiddenMessage": "This is an unfinished page. It may not function correctly."
+  },
+"socialLinks": {
+    "x": "https://x.com/babyrobotx",
+    "email": "hello.babyrobot@gmail.com",
+    "github": null,
+    "spotify": "https://open.spotify.com/show/033kl30ssKZbpV43RDqUOc?si=f3d242eb8c1044c7",
+    "kofi": "https://ko-fi.com/babyrobot",
+    "substack": "https://babyrobot.substack.com",
+    "presetOrder": {
+      "substack": 1,
+      "spotify": 2,
+      "x": 3,
+      "github": 99,
+      "email": 6,
+      "kofi": 7
+    },
+    "custom": [
+      {
+        "id": "custom-instagram",
+        "label": "Instagram",
+        "href": "https://instagram.com/babyrobotofficial",
+        "iconKey": "instagram",
+        "visible": true,
+        "order": 4
+      },
+      {
+        "id": "custom-youtube",
+        "label": "YouTube",
+        "href": "https://youtube.com/@babyrobotofficial",
+        "iconKey": "youtube",
+        "visible": true,
+        "order": 5
+      }
+    ]
+  }
+}

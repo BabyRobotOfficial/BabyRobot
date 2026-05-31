@@ -1,0 +1,13 @@
+{
+  "introLead": "Baby Robot is an art collective and experimental art laboratory that focuses on AI collaboration, philosophy, news, and partnership. Through stories, various visual mediums and more, we aim to spread AI literacy and education, but, like. In a fun way.",
+  "introMore": "To see all articles, check out",
+  "introMoreLinks": [
+    "archive",
+    "tag"
+  ],
+  "showIntroLead": true,
+  "showIntroMore": true,
+  "heroPresetId": "default",
+  "heroImageSrc": null,
+  "heroImageAlt": "Whono theme preview"
+}

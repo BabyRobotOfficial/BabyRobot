@@ -1,0 +1,118 @@
+---
+import UiIcon from './UiIcon.astro';
+import { ADMIN_NAV_ORNAMENT_DEFAULT } from '../lib/admin-console/theme-shared';
+import { createWithBase } from '../utils/format';
+import { getThemeSettings, type SidebarNavId } from '../lib/theme-settings';
+//import logoMain from '../assets/branding/logo_main256.png';
+//import logoInv from '../assets/branding/logo_main_invert256.png';
+import wordmarkMain from '../assets/branding/wordmark_main.png';
+import wordmarkInv from '../assets/branding/wordmark_maininv.png';
+
+const {
+  siteTitle = 'Baby Robot',
+  activeNavId
+} = Astro.props as {
+  siteTitle?: string;
+  activeNavId?: SidebarNavId;
+};
+
+const pathname = Astro.url.pathname;
+const base = import.meta.env.BASE_URL ?? '/';
+const withBase = createWithBase(base);
+const homeHref = withBase('/');
+const { settings } = getThemeSettings();
+const quote = settings.shell.quote;
+
+// 🛠️ FORCED SIDEBAR LINK OVERRIDE — BYPASSING THE CONSOLE COMPLETELY GO HERE TO ADD PAGES ON THE SIDEBAR
+const nav = [
+  { id: 'essay', label: 'The Heart', ornament: null, href: withBase('/heart/') },
+  { id: 'essay', label: 'The Brain', ornament: null, href: withBase('/brain/') },
+  { id: 'archive', label: 'Archive', ornament: null, href: withBase('/archive/') },
+  { id: 'about', label: 'About', ornament: null, href: withBase('/about/') },
+  { id: 'memo', label: 'FAQ', ornament: null, href: withBase('/faq/') }
+];
+
+const showReaderToggle = settings.ui.readingMode.showEntry;
+const showRssLink = settings.ui.sidebarActions.showRssLink;
+const showThemeToggle = settings.ui.sidebarActions.showThemeToggle;
+const showAdminEntry = settings.ui.sidebarActions.showAdminEntry && settings.site.adminOverview.publicVisible;
+
+---
+
+<aside class="sidebar">
+<a class="sidebar__title nav-logo-link" href={homeHref} aria-label={`${siteTitle} Home`}>
+  <img src={wordmarkMain.src} alt={`${siteTitle} Wordmark`} class="sidebar-wordmark logo-light" />
+  <img src={wordmarkInv.src} alt={`${siteTitle} Wordmark`} class="sidebar-wordmark logo-dark" />
+</a>
+  <div class="sidebar__quote">
+    {quote.split('\n').map((line) => (
+      <>
+        {line}<br />
+      </>
+    ))}
+  </div>
+
+  <ul class="nav">
+    {nav.map((item) => {
+      const isActive = activeNavId
+        ? item.id === activeNavId
+        : pathname === item.href || (item.href !== homeHref && pathname.startsWith(item.href));
+      return (
+        <li>
+          <a href={item.href} aria-current={isActive ? 'page' : undefined}>
+            <span>{item.label}</span>
+            {item.ornament === ADMIN_NAV_ORNAMENT_DEFAULT ? (
+              <span class="dot" aria-hidden="true"></span>
+            ) : item.ornament ? (
+              <span class="nav-ornament" aria-hidden="true">{item.ornament}</span>
+            ) : null}
+          </a>
+        </li>
+      );
+    })}
+  </ul>
+
+ 
+
+ <div class="sidebar-actions" style="margin-top: 0;">
+    {showReaderToggle ? (
+      <button
+        id="reader-toggle"
+        class="icon-button reader-toggle"
+        type="button"
+        aria-label="Reader Mode"
+        aria-pressed="false"
+        title="Reader Mode"
+      >
+        <UiIcon name="book-open" class="icon icon-book-open" />
+        <UiIcon name="book-closed" class="icon icon-book-closed" />
+      </button>
+    ) : null}
+
+    {showRssLink ? (
+      <a class="icon-button rss-link" href={withBase('/archive/rss.xml')} aria-label="RSS Feed" title="RSS Feed">
+        <UiIcon name="rss" class="icon" />
+      </a>
+    ) : null}
+
+    {showThemeToggle ? (
+      <button
+        id="theme-toggle"
+        class="icon-button theme-toggle"
+        type="button"
+        aria-label="Toggle Dark Mode"
+        aria-pressed="false"
+        title="Toggle Dark Mode"
+      >
+        <UiIcon name="moon" class="icon icon-moon" />
+        <UiIcon name="sun" class="icon icon-sun" />
+      </button>
+    ) : null}
+
+    {showAdminEntry ? (
+      <a class="icon-button admin-entry-link" href={withBase('/admin/')} aria-label="Admin Dashboard" title="Admin Dashboard">
+        <UiIcon name="monitor-dot" class="icon" />
+      </a>
+    ) : null}
+  </div>
+</aside>

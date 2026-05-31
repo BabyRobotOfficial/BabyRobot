@@ -1,0 +1,117 @@
+---
+import { formatISODateUtc } from '../utils/format';
+import type { ArticleMetaSettings } from '../lib/theme-settings';
+
+const {
+  href,
+  title,
+  excerpt,
+  date,
+  visibleTags = [],
+  articleMetaSettings,
+  badge,
+  cover
+} = Astro.props as {
+  href: string;
+  title: string;
+  excerpt?: string | null;
+  date: Date;
+  visibleTags?: string[];
+  articleMetaSettings: ArticleMetaSettings;
+  badge?: string | null;
+  cover?: string | null;
+};
+
+const shouldShowMetaLine = articleMetaSettings.showDate || (articleMetaSettings.showTags && visibleTags.length > 0);
+---
+
+<a class="list-item list-item--link" href={href}>
+  <div class="list-item__layout-bridge">
+    
+    <div class="list-item__text-block">
+      <div class="list-item__row">
+        <h3 class="list-item__title">
+          {badge ? <span class="badge" style="margin-right: 8px; font-size: 13px; font-weight: normal; color: var(--accent); border: 1px solid var(--accent); padding: 1px 6px; border-radius: 4px;">[{badge}]</span> : null}
+          {title}
+        </h3>
+      </div>
+      {excerpt ? <p class="list-item__excerpt">{excerpt}</p> : null}
+      
+      {shouldShowMetaLine ? (
+        <div class="meta-line meta-line--items">
+          {articleMetaSettings.showDate ? (
+            <span class="meta-line__item">
+              {articleMetaSettings.dateLabel ? `${articleMetaSettings.dateLabel}` : ''}{formatISODateUtc(date)}
+            </span>
+          ) : null}
+          {articleMetaSettings.showTags && visibleTags.length ? (
+            <span class="meta-line__item meta-line__item--tags">
+              {visibleTags.map((tag) => <span class="tag">#{tag}</span>)}
+            </span>
+          ) : null}
+        </div>
+      ) : null}
+    </div>
+
+    {cover && (
+      <div class="list-item__preview-thumbnail">
+        <img 
+          src={cover} 
+          alt="" 
+          loading="lazy" 
+          decoding="async" 
+        />
+      </div>
+    )}
+
+  </div>
+</a>
+
+<style>
+  /* Responsive Layout Bridge Structure */
+  .list-item__layout-bridge {
+    display: flex;
+    gap: 16px;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .list-item__text-block {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .list-item__title {
+    margin-top: 0;
+  }
+
+  /* Baseline size: 72px square (covers mobile and tablet viewports) */
+  .list-item__preview-thumbnail {
+    width: 72px;
+    height: 72px;
+    flex-shrink: 0;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-top: 4px;
+    background: var(--code-header-bg, #f2f2f0);
+    border: 1px solid var(--border, #eaeaea);
+  }
+
+  .list-item__preview-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Substack Desktop Profile Scale Rule: >1024px width triggers the 160px card shift */
+  @media (min-width: 1025px) {
+    .list-item__preview-thumbnail {
+      width: 160px;
+      height: 102px;
+      border-radius: 8px;
+    }
+    .list-item__layout-bridge {
+      gap: 24px;
+    }
+  }
+</style>

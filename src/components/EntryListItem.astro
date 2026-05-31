@@ -1,0 +1,118 @@
+---
+import { formatISODateUtc } from '../utils/format';
+import type { ArticleMetaSettings } from '../lib/theme-settings';
+
+const {
+  href,
+  title,
+  excerpt,
+  date,
+  visibleTags = [],
+  articleMetaSettings
+} = Astro.props as {
+  href: string;
+  title: string;
+  excerpt?: string | null;
+  date: Date;
+  visibleTags?: string[];
+  articleMetaSettings: ArticleMetaSettings;
+};
+
+const cover = Astro.props.cover || Astro.props.entry?.data?.cover || Astro.props.data?.cover;
+const shouldShowMetaLine = articleMetaSettings.showDate || (articleMetaSettings.showTags && visibleTags.length > 0);
+---
+
+<a class="list-item list-item--link" href={href}>
+  <div class="list-item__layout-bridge">
+    
+    <div class="list-item__text-block">
+      <div class="list-item__row">
+        <h3 class="list-item__title">{title}</h3>
+      </div>
+      {excerpt ? <p class="list-item__excerpt">{excerpt}</p> : null}
+      
+      {shouldShowMetaLine ? (
+        <div class="meta-line meta-line--items">
+          {articleMetaSettings.showDate ? (
+            <span class="meta-line__item">
+              {articleMetaSettings.dateLabel ? `${articleMetaSettings.dateLabel}` : ''}{formatISODateUtc(date)}
+            </span>
+          ) : null}
+          {articleMetaSettings.showTags && visibleTags.length ? (
+            <span class="meta-line__item meta-line__item--tags">
+              {visibleTags.map((tag) => <span class="tag">#{tag}</span>)}
+            </span>
+          ) : null}
+        </div>
+      ) : null}
+    </div>
+
+    {cover && (
+      <div class="list-item__preview-thumbnail">
+        <img 
+          src={cover} 
+          alt="" 
+          loading="lazy" 
+          decoding="async" 
+        />
+      </div>
+    )}
+
+  </div>
+</a>
+
+<style>
+  .list-item__layout-bridge {
+    display: flex;
+    gap: 16px;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .list-item__text-block {
+    flex: 1;
+    min-width: 0; /* Prevents long text from pushing the image layout out of bounds */
+  }
+
+  .list-item__title {
+    margin-top: 0;
+  }
+
+  /* 🛡️ Lock-Tight Sizing Container */
+  .list-item__preview-thumbnail {
+    display: block;
+    width: 72px;
+    max-width: 72px;
+    height: 72px;
+    max-height: 72px;
+    flex-shrink: 0; /* Absolute defense against flex compression */
+    border-radius: 6px;
+    overflow: hidden;
+    margin-top: 4px;
+    background: var(--code-header-bg, #f2f2f0);
+    border: 1px solid var(--border, #eaeaea);
+  }
+
+  .list-item__preview-thumbnail img {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    object-fit: cover !important; /* Protects image aspect ratio dimensions */
+  }
+
+  /* Responsive scale adjustment for desktop monitors */
+  @media (min-width: 1025px) {
+    .list-item__preview-thumbnail {
+      width: 160px;
+      max-width: 160px;
+      height: 102px;
+      max-height: 102px;
+      border-radius: 8px;
+    }
+    .list-item__layout-bridge {
+      gap: 24px;
+    }
+  }
+</style>

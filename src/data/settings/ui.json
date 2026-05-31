@@ -1,0 +1,22 @@
+{
+  "codeBlock": {
+    "showLineNumbers": true
+  },
+  "readingMode": {
+    "showEntry": true
+  },
+  "sidebarActions": {
+    "showRssLink": true,
+    "showThemeToggle": true,
+    "showAdminEntry": false
+  },
+  "articleMeta": {
+    "showDate": true,
+    "showTags": true,
+    "showWordCount": true,
+    "showReadingTime": true
+  },
+  "layout": {
+    "sidebarDivider": "default"
+  }
+}

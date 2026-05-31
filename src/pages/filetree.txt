@@ -1,0 +1,86 @@
+Folder PATH listing for volume Acer
+Volume serial number is 0000000A B067:3F30
+C:.
+|   filetree.txt
+|   index.astro
+|   robots.txt.ts
+|   rss.xml.js
+|   
++---about
+|       about-content.md
+|       index.astro
+|       
++---admin
+|   |   index.astro
+|   |   
+|   +---checks
+|   |       index.astro
+|   |       
+|   +---content
+|   |       index.astro
+|   |       [collection].astro
+|   |       
+|   +---data
+|   |       index.astro
+|   |       
+|   +---images
+|   |       index.astro
+|   |       
+|   \---theme
+|           index.astro
+|           
++---api
+|   \---admin
+|       |   settings.ts
+|       |   
+|       +---content
+|       |       entry.ts
+|       |       
+|       +---data
+|       |       settings.ts
+|       |       
+|       \---images
+|               list.ts
+|               meta.ts
+|               
++---archive
+|   |   index.astro
+|   |   index.json.ts
+|   |   rss.xml.js
+|   |   [slug].astro
+|   |   
+|   +---page
+|   |       [page].astro
+|   |       
+|   \---tag
+|       |   [tag].astro
+|       |   
+|       \---[tag]
+|           \---page
+|                   [page].astro
+|                   
++---brain
+|   |   draft-dialog.astro
+|   |   index.astro
+|   |   index.json.ts
+|   |   [slug].astro
+|   |   
+|   \---page
+|           [page].astro
+|           
++---checks
+|       markdown-smoke.astro
+|       
++---faq
+|       faq-content.md
+|       index.astro
+|       
+\---heart
+    |   index.astro
+    |   index.json.ts
+    |   rss.xml.js
+    |   [slug].astro
+    |   
+    \---page
+            [page].astro
+            

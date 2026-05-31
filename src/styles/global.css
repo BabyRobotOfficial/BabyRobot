@@ -1,0 +1,736 @@
+/* global.css 为公开站点的共享样式入口，只负责 tokens/base 与跨页面公共规则。
+   公开页聚合入口分层如下：
+   - global.css：共享基础层 + layout/list 等跨页面公共规则
+   - home.css / about.css / memo.css：页面私有规则
+   - article.css：正文页专用（prose / figure / callout / lightbox / code-block）
+   - bits-page.css：/bits/ 专用（bits / lightbox）
+   - admin-shell.css + Admin 路由私有样式：/admin 页面按需引入
+   断点变量覆盖仅保留共享层变量与跨页面公共规则。 */
+@import "./components/layout.css";
+@import "./components/lists.css";
+@import "./components/entry-tags.css";
+@import url('https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;1,400&display=swap');
+
+@font-face {
+  font-family: "LXGW WenKai Lite";
+  src: url("/fonts/lxgw-wenkai-lite-latin.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+2000-206F, U+3000-303F, U+FF00-FFEF;
+}
+
+@font-face {
+  font-family: "LXGW WenKai Lite";
+  src: url("/fonts/lxgw-wenkai-lite-cjk-common.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+4E00-9FFF;
+}
+
+@font-face {
+  font-family: "LXGW WenKai Lite";
+  src: url("/fonts/lxgw-wenkai-lite-cjk-ext.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+3400-4DBF, U+20000-2A6DF;
+}
+
+@font-face {
+  font-family: "Noto Serif SC";
+  src: url("/fonts/noto-serif-sc-400-latin.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+2000-206F, U+3000-303F, U+FF00-FFEF;
+}
+
+@font-face {
+  font-family: "Noto Serif SC";
+  src: url("/fonts/noto-serif-sc-400-cjk-common.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+4E00-9FFF;
+}
+
+@font-face {
+  font-family: "Noto Serif SC";
+  src: url("/fonts/noto-serif-sc-400-cjk-ext.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+3400-4DBF, U+20000-2A6DF;
+}
+
+@font-face {
+  font-family: "Noto Serif SC";
+  src: url("/fonts/noto-serif-sc-600-latin.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+2000-206F, U+3000-303F, U+FF00-FFEF;
+}
+
+@font-face {
+  font-family: "Noto Serif SC";
+  src: url("/fonts/noto-serif-sc-600-cjk-common.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+4E00-9FFF;
+}
+
+@font-face {
+  font-family: "Noto Serif SC";
+  src: url("/fonts/noto-serif-sc-600-cjk-ext.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+3400-4DBF, U+20000-2A6DF;
+}
+.prose p {
+  margin-top: 0;
+  margin-bottom: 32px !important;
+  font-size: 19px !important;
+  line-height: 1.65 !important;
+}
+
+/* 📦 Global Custom Box Quotes (Using Method 1 Attribute tags) */
+.prose .quote-box {
+  background-color: var(--substack-quote-bg) !important;
+  color: var(--substack-quote-text) !important;
+  border-radius: 8px;
+  font-family: "Spectral", Georgia, serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 19px;
+  margin: 32px 0;
+  padding: 16px 32px;
+  line-height: 1.6;
+}
+
+/* 🎨 Global Custom Pull Quotes */
+.prose .quote-pull {
+  border-left: 4px solid var(--substack-pull-border) !important;
+  color: var(--substack-quote-text) !important;
+  font-family: "Spectral", Georgia, serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 19px;
+  margin: 20px 0;
+  padding: 0 0 0 24px;
+  line-height: 1.65;
+}
+
+
+/* ===============================
+   主题变量
+================================ */
+:root {
+  color-scheme: light;
+  --bg: #fffefc;
+  --text: #292524;
+  --muted: #57534e;
+  --faint: #a8a29e;
+  --border: #e7e5e4;
+  --accent: #b91c1c;
+  --overlay-20: rgba(0, 0, 0, 0.2);
+  --overlay-35: rgba(0, 0, 0, 0.35);
+  --overlay-45: rgba(0, 0, 0, 0.45);
+  --overlay-60: rgba(0, 0, 0, 0.6);
+  --overlay-70: rgba(0, 0, 0, 0.7);
+  --overlay-85: rgba(0, 0, 0, 0.85);
+  --overlay-90: rgba(0, 0, 0, 0.9);
+  --lightbox-text: #ffffff;
+  --lightbox-border: rgba(255, 255, 255, 0.2);
+  --lightbox-dot-muted: rgba(255, 255, 255, 0.35);
+  --blur-md: 8px;
+  --blur-lg: 12px;
+  --code-header-bg: #f2f2f0;
+  --code-content-bg: #fcfcfb;
+  --code-border: #e6e6e4;
+  --code-text: #333333;
+  --code-bg: var(--code-content-bg);
+  --code-action-hover-bg: #e8e8e6;
+  --panel: var(--code-header-bg);
+  --font-mono: "Sarasa Mono SC", "Noto Sans Mono CJK SC", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --max: 900px;
+  --sidebar: 320px;
+  --tap-min-h: 44px;
+  --pad-x: 48px;
+  --card-pad: 12px 14px;
+  --quote-pad: 1rem;
+  --header-gap: 12px;
+  /* leo and gemini added this. fingers crossed */
+ --substack-quote-bg: rgb(235, 235, 235);
+  --substack-quote-text: rgb(54, 55, 55);
+  --substack-pull-border: rgb(150, 75, 125); /* Your rich berry accent */
+}
+
+:root[data-theme="dark"] {
+color-scheme: dark;
+  --bg: #1a1a1a;
+  --text: #e5e5e5;
+  --muted: #a3a3a3;
+  --faint: #737373;
+  --border: #333333;
+  --accent: #f87171;
+  --code-header-bg: #2a2a2a;
+  --code-content-bg: #222222;
+  --code-border: #333333;
+  --code-text: #e1e1e1;
+  --code-bg: var(--code-content-bg);
+  --code-action-hover-bg: #3a3a3a;
+  --lightbox-text: #ffffff;
+  --lightbox-border: rgba(255, 255, 255, 0.2);
+  --lightbox-dot-muted: rgba(255, 255, 255, 0.35);
+
+  --substack-quote-bg: rgb(40, 41, 42);       /* Soft charcoal capsule */
+  --substack-quote-text: rgb(210, 212, 214);   /* Readable off-white */
+  --substack-pull-border: rgb(245, 196, 245);  /* Your pastel violet accent - note from Leo, Gemini called this violet but I'm absolutely leaving that in because wtf */
+}
+
+/* ===============================
+   基础元素
+================================ */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Noto Serif SC", ui-serif, Georgia, "Times New Roman", "Songti SC", serif;
+  line-height: 1.75;
+  font-size: 16px;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+time,
+.page-meta,
+.list-item__meta,
+.archive-date,
+.bit-meta,
+.meta-line {
+  font-family: "LXGW WenKai Lite", "Kaiti SC", "STKaiti", serif;
+}
+
+.page-subtitle,
+.intro,
+.narration,
+.aside,
+.note,
+.prose blockquote,
+.prose blockquote p,
+cite,
+q {
+  font-family: "LXGW WenKai Lite", "Kaiti SC", "STKaiti", serif;
+}
+
+pre,
+code,
+kbd,
+samp {
+  font-family: var(--font-mono);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+/* ==========================================================================
+   SUBSTACK-STYLE INLINE LINKS WITH DARK THEME COMPATIBILITY
+   ========================================================================== */
+
+/* Target regular content links that don't have custom button/nav classes */
+a:where(:not([class])) {
+  color: var(--substack-pull-border) !important; /* Dynamically pulls rich berry in light mode, pastel violet in dark mode */
+  text-decoration: none;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+/* Elegant underline reveal on hover */
+a:where(:not([class])):hover {
+  color: var(--substack-pull-border) !important;
+  text-decoration: underline;
+}
+
+/* Subtle style shift for links that have already been visited so they stay readable */
+a:where(:not([class])):visited {
+  opacity: 0.9;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-bottom-color: transparent;
+}
+
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 28px 0;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 8px;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 6px 10px;
+  border-radius: 6px;
+  z-index: 10;
+}
+
+.skip-link:focus {
+  left: 8px;
+}
+
+.intro {
+  margin: 28px 0 32px;
+  color: var(--text);
+  font-size: 16px;
+  letter-spacing: 0.02em;
+}
+
+.section-title {
+  font-size: 20px;
+  margin: 28px 0 2px;
+  position: relative;
+}
+
+.section-title::after {
+  content: "";
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--border);
+  margin-top: 6px;
+}
+
+/* ===============================
+   响应式
+================================ */
+@media (max-width: 900px) {
+  :root {
+    color-scheme: light;
+    --sidebar: 1fr;
+    --tap-min-h: 44px;
+    --pad-x: 20px;
+    --card-pad: 10px 12px;
+    --quote-pad: 0.85rem;
+    --header-gap: 4px;
+  }
+
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #1a1a1a;
+    --text: #e5e5e5;
+    --muted: #a3a3a3;
+    --faint: #737373;
+    --border: #333333;
+    --accent: #f87171;
+    --code-content-bg: #222222;
+  }
+
+  .intro {
+    margin: 16px 0 22px;
+  }
+
+}
+
+@media (min-width: 641px) and (max-width: 900px) {
+  :root {
+    --pad-x: 28px;
+  }
+
+}
+
+@media (max-width: 640px) {
+  :root {
+    --pad-x: 18px;
+  }
+
+  .intro {
+    margin: 12px 0 18px;
+  }
+}
+
+CSS
+/* ==========================================================================
+   Baby Robot Publisher Styling Rules
+   ========================================================================== */
+
+/* --- ☀️ NATIVE VARIABLE baseline (LIGHT MODE DEFAULT) --- */
+:root {
+  --substack-quote-bg: rgb(235, 235, 235);
+  --substack-quote-text: rgb(54, 55, 55);
+  --substack-pull-border: rgb(150, 75, 125);      /* Rich berry accent */
+  --substack-minimal-border: rgb(115, 115, 115);
+  --substack-minimal-text: rgb(90, 90, 90);
+}
+
+/* --- 🌙 NATIVE VARIABLE FLIP (DARK MODE) --- */
+:root[data-theme="dark"] {
+  --substack-quote-bg: rgb(40, 41, 42);           /* Soft charcoal capsule */
+  --substack-quote-text: rgb(210, 212, 214);       /* High-readability grey-white */
+  --substack-pull-border: rgb(245, 196, 245);      /* Pastel violet accent */
+  --substack-minimal-border: rgb(180, 180, 180);
+  --substack-minimal-text: rgb(170, 170, 170);
+}
+
+/* ==========================================================================
+   GLOBAL BRANDING & NAVIGATION ASSETS
+   ========================================================================== */
+
+/* Light Mode visibility defaults */
+.logo-light, .wordmark-light {
+  display: inline-block;
+}
+.logo-dark, .wordmark-dark {
+  display: none !important;
+}
+
+/* Dark Mode visibility rules via framework hooks */
+:root[data-theme="dark"] .logo-light,
+:root[data-theme="dark"] .wordmark-light,
+.dark .logo-light,
+.dark .wordmark-light {
+  display: none !important;
+}
+
+:root[data-theme="dark"] .logo-dark,
+:root[data-theme="dark"] .wordmark-dark,
+.dark .logo-dark,
+.dark .wordmark-dark {
+  display: inline-block !important;
+}
+
+/* Branding Containers & Dimensions */
+.nav-logo-link {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-decoration: none;
+}
+
+.site-logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.sidebar-wordmark {
+  max-width: 256px; /* Adjust this width based on your design preferences */
+  height: auto;
+  max-height: 40px; /* Caps the vertical footprint so it sits neatly above the quote */
+  object-fit: contain;
+}
+
+.hero-branding-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 4rem 0;
+}
+
+.hero-wordmark {
+  max-width: 600px;
+  width: 90%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* ==========================================================================
+   FEED LAYOUT PSEUDO-ELEMENT LOGO INJECTIONS
+   ========================================================================== */
+
+/* 1. Base Setup: Prepare the page titles to house an inline icon asset */
+.essay-page .page-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px; /* Flawless spacing between your logo asset and text characters */
+}
+
+.essay-page .page-title::before {
+  content: "";
+  display: inline-block;
+  width: 48px;  /* Clean alignment sizing */
+  height: 48px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  vertical-align: middle;
+}
+
+/* 2. THE BRAIN PAGE LOGO PLACEMENT */
+/* Light Mode (Default Canvas state) */
+.essay-page [data-index-url*="brain"] .page-title::before {
+  background-image: url('/branding/brainlogo_main_256.png');
+}
+/* Dark Mode Toggle Hook */
+:root[data-theme="dark"] .essay-page [data-index-url*="brain"] .page-title::before,
+.dark .essay-page [data-index-url*="brain"] .page-title::before {
+  background-image: url('/branding/brainlogo_main_invert256.png');
+}
+
+/* 3. THE HEART PAGE LOGO PLACEMENT */
+/* Light Mode (Default Canvas state) */
+.essay-page [data-index-url*="heart"] .page-title::before {
+  background-image: url('/branding/heartlogo_main_256.png');
+}
+/* Dark Mode Toggle Hook */
+:root[data-theme="dark"] .essay-page [data-index-url*="heart"] .page-title::before,
+.dark .essay-page [data-index-url*="heart"] .page-title::before {
+  background-image: url('/branding/heartlogo_main_invert256.png');
+}
+
+/* ==========================================================================
+   GLOBAL TYPOGRAPHY ENGINE (SUBSTACK ESSAY LAYOUT)
+   ========================================================================== */
+
+html, body, p, li, span, main, article, .prose, .prose p {
+  font-family: "Spectral", Georgia, serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 19px !important;
+  line-height: 1.65 !important;
+  letter-spacing: -0.01em;
+}
+
+/* Automatic vertical breathing room for standard copy paragraphs */
+.prose p {
+  margin-top: 0;
+  margin-bottom: 32px !important;
+}
+
+.prose p:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* Mobile responsive scaling down constraints */
+@media (max-width: 768px) {
+  html, body, p, li, span, main, article, .prose, .prose p {
+    font-size: 17px !important;
+    line-height: 1.6 !important;
+  }
+}
+
+
+/* ==========================================================================
+   DECENTRALIZED SUBSTACK QUOTE BLOCKS (WORKS ACROSS ALL FUTURE ARTICLES)
+   ========================================================================== */
+
+/* --- STYLE 1: THE ROUNDED BACKGROUND BOX --- */
+.prose .quote-box blockquote {
+  background-color: var(--substack-quote-bg) !important;
+  color: var(--substack-quote-text) !important;
+  border-radius: 8px;
+  border: none;
+  font-size: 19px;
+  margin: 32px 0;
+  line-height: 1.6;
+}
+
+/* --- STYLE 2: THE REFINED SIDE-BORDER PULL-QUOTE --- */
+.prose .quote-pull blockquote {
+  text-align: left;
+  max-width: 100%;
+  background: transparent;
+  border: none;
+  color: var(--substack-quote-text) !important;
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  margin: 20px 0;
+  padding: 0 0 0 24px;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+/* --- STYLE 3: THE MINIMAL CLEAN CITED QUOTE --- */
+.prose .quote-minimal blockquote {
+  border: none;
+  border-left: 3px solid var(--substack-minimal-border) !important;
+  background: transparent;
+  color: var(--substack-minimal-text) !important;
+  font-size: 17px;
+  margin: 28px 0;
+  padding: 4px 0 4px 20px;
+  line-height: 1.6;
+}
+
+/* Resets inner paragraphs within quotes so layouts do not compound double margins 
+.prose [class^="quote-"] blockquote p {
+  margin: 0 !important;
+  padding: 0 !important;
+  color: inherit !important;
+  font-size: inherit !important;
+}*/
+
+/* ==========================================================================
+   GLOBAL HEADING ENGINE (SUBSTACK ESSAY MULTIPLIERS)
+   ========================================================================== */
+
+/* 🏷️ Unified Base Heading Configuration */
+.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+  /* 🌟 UPDATED WITH YOUR EXACT COMPUTED HEADLINE STACK */
+  font-family: "SF Pro Display", -apple-system-headline, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !important;
+  
+  font-weight: bold !important;
+  line-height: 1.16 !important;
+  margin: 1.5em 0 0.625em !important; 
+  color: var(--text) !important;       
+  
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* 📐 Substack Mathematical Scale Computations (Based on a 19px body base) */
+.prose h1 { font-size: 2.0em !important;   } /* ~38px */
+.prose h2 { font-size: 1.625em !important; } /* ~31px */
+.prose h3 { font-size: 1.375em !important; } /* ~26px */
+.prose h4 { font-size: 1.125em !important; } /* ~21px */
+.prose h5 { font-size: 1.0em !important;   } /* ~19px (Slightly smaller than h4, bold body match) */
+.prose h6 { font-size: 0.875em !important; } /* ~16.5px (Clean, small accent metadata size) */
+
+/* Clear accidental compound top-margins if a heading lands at the very start of your markdown block */
+.prose > *:first-child {
+  margin-top: 0 !important;
+}
+
+/* ==========================================================================
+   MEDIA ASSETS & AUTHOR INTERFACES
+   ========================================================================== */
+
+.prose img[src*="author"],
+.prose img[src*="profile"] {
+  display: block;
+  max-width: 180px;
+  width: 100%;
+  height: auto;
+  margin: 1.5rem auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* ==========================================================================
+   VISUAL OVERRIDES: REMOVE FORCED PORTFOLIO LINKS - WHY did i have to do this, this is STUPID
+   ========================================================================== */
+a.icon-link[aria-label="GitHub"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* ==========================================================================
+   ENTRY SEARCH FEEDBACK WRAPPING SYSTEM
+   ========================================================================== */
+.entry-search-feedback {
+  /* 1. Smash the fixed single-line height constraint */
+  height: auto !important; 
+  
+  /* 2. Force the overflow rules to reveal wrapped text layers */
+  overflow: visible !important; 
+  
+  /* 3. Kill the ellipsis cutoff calculation */
+  text-overflow: clip !important; 
+  
+  /* 4. Force standard, responsive typographical wrapping physics */
+  white-space: normal !important; 
+  
+  /* 5. Set a clean layout line-spacing height for multi-line reads */
+  line-height: 1.4 !important; 
+}
+
+/* 🌞 LIGHT MODE DESIGN TOKENS */
+:root {
+  /* ... your existing variables like --color-foreground or --text-main ... */
+  
+  --theme-ui-text: #000000; /* Forces exact brand compliance in Light Mode */
+}
+
+/* 🌙 DARK MODE DESIGN TOKENS */
+/* Note: Your project might use [data-theme="dark"] or body.dark instead of .dark */
+.dark, [data-theme="dark"] {
+  /* ... your existing dark variables ... */
+  
+  --theme-ui-text: #ffffff; /* Forces exact brand compliance in Dark Mode */
+}
+
+/* 🎯 FORCE UNIVERSAL PAGE HEADING SIZES ACROSS ALL CONTENT VIEWS */
+.page-header .page-title,
+.page-title {
+    font-size: 2.25rem !important;
+    font-weight: 700 !important;
+    margin: 0 0.5rem 0.5rem 0 !important;
+}
+
+/* 1. Forces both About, FAQ, and all sub-headers to stack vertically to the left */
+.page-header,
+.page-header.page-header--about,
+.page-header.page-header--memo,
+.page-header--memo,
+.page-header--about {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    gap: 8px !important; /* Pulls the line of icons tighter to the title text */
+    width: 100% !important;
+    text-align: left !important;
+}
+
+/* 2. Resets interior heading text container alignment */
+.page-heading,
+.page-header .page-heading {
+    display: block !important;
+    width: 100% !important;
+    text-align: left !important;
+    margin: 0 !important;
+}
+
+/* 3. Forces ONLY the social links variant row to group left-aligned below the header text */
+div.page-actions:not(:has([data-entry-search])),
+.page-header:not(.page-header--with-search) .page-actions,
+.page-header.page-header--about .page-actions,
+.page-header.page-header--memo .page-actions,
+.social-actions-row {
+    display: flex !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    align-self: flex-start !important;
+    gap: 14px !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transform: none !important;
+}

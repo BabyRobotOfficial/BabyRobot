@@ -1,0 +1,365 @@
+---
+// src/components/PodcastPlayer.astro
+interface Props {
+  audioUrl: string;
+  title: string;
+  spotifyUrl?: string | null;
+}
+
+const { audioUrl, title, spotifyUrl = null } = Astro.props;
+---
+
+<div class="podcast-player">
+    {spotifyUrl && (
+    <div class="spotify-badge-row">
+        <a href={spotifyUrl} target="_blank" rel="noopener noreferrer" class="spotify-link-btn">
+        <!-- ADD THIS CLASS TO THE TEXT SPAN -->
+        <span class="spotify-btn-text"><span class="spotify-icon"></span>Listen on Spotify</span>
+        </a>
+    </div>
+    )}
+
+  <div class="player-header">
+    <h4>{title}</h4>
+  </div>
+  
+  <audio id="audio-element" src={audioUrl} controls></audio>
+
+  <div class="speed-control-container">
+    <label for="speed-slider">Playback Speed: <span id="speed-display">1.00x</span></label>
+    <input 
+      type="range" 
+      id="speed-slider" 
+      min="0.5" 
+      max="2.0" 
+      step="0.1" 
+      value="1.0"
+    />
+    
+    <label class="pitch-label">
+    <input type="checkbox" id="preserve-pitch" checked />
+    <span class="checkbox-box"></span>
+    <span class="checkbox-text">Preserve Pitch</span>
+    </label>
+  </div>
+</div>
+
+<script define:vars={{ audioUrl }}>
+  const audio = document.getElementById('audio-element');
+  const speedSlider = document.getElementById('speed-slider');
+  const speedDisplay = document.getElementById('speed-display');
+  const preservePitchCheckbox = document.getElementById('preserve-pitch');
+
+  const progressKey = `podcast_progress_${btoa(audioUrl).substring(0, 32)}`;
+  const GLOBAL_SPEED_KEY = 'podcast_global_speed';
+  const GLOBAL_PITCH_KEY = 'podcast_global_pitch';
+  const GLOBAL_VOLUME_KEY = 'podcast_global_volume';
+
+  if (audio && speedSlider && speedDisplay && preservePitchCheckbox) {
+    
+    const savedSpeed = localStorage.getItem(GLOBAL_SPEED_KEY) || '1.0';
+    const savedPitch = localStorage.getItem(GLOBAL_PITCH_KEY) !== 'false';
+    const savedVolume = localStorage.getItem(GLOBAL_VOLUME_KEY) || '1.0';
+
+    speedSlider.value = savedSpeed;
+    speedDisplay.textContent = `${parseFloat(savedSpeed).toFixed(2)}x`;
+    preservePitchCheckbox.checked = savedPitch;
+    audio.volume = parseFloat(savedVolume);
+
+    const savedTime = localStorage.getItem(progressKey);
+    if (savedTime) {
+      const parsedTime = parseFloat(savedTime);
+      audio.addEventListener('loadedmetadata', () => {
+        if (audio.duration && (audio.duration - parsedTime > 15)) {
+          audio.currentTime = parsedTime;
+        }
+      }, { once: true });
+    }
+
+    // UPDATED: Dynamically calculates and paints the two-tone fill track
+    const updateSliderFill = (slider) => {
+      const min = parseFloat(slider.min) || 0.5;
+      const max = parseFloat(slider.max) || 2.0;
+      const val = parseFloat(slider.value);
+      const percentage = ((val - min) / (max - min)) * 100;
+      
+      // Paint light accent on the left, dark accent on the right
+      slider.style.background = `linear-gradient(to right, rgb(245,196,245) 0%, rgb(245,196,245) ${percentage}%, rgb(175,75,125) ${percentage}%, rgb(175,75,125) 100%)`;
+    };
+
+    const applySpeedAndPitch = () => {
+      const speed = parseFloat(speedSlider.value);
+      audio.playbackRate = speed;
+      audio.preservesPitch = preservePitchCheckbox.checked;
+      speedDisplay.textContent = `${speed.toFixed(2)}x`;
+      
+      updateSliderFill(speedSlider);
+      
+      localStorage.setItem(GLOBAL_SPEED_KEY, speedSlider.value);
+      localStorage.setItem(GLOBAL_PITCH_KEY, preservePitchCheckbox.checked.toString());
+    };
+
+    speedSlider.addEventListener('input', applySpeedAndPitch);
+    preservePitchCheckbox.addEventListener('change', applySpeedAndPitch);
+    
+    audio.addEventListener('timeupdate', () => {
+      if (audio.currentTime > 0) {
+        localStorage.setItem(progressKey, audio.currentTime.toString());
+      }
+    });
+
+    audio.addEventListener('volumechange', () => {
+      localStorage.setItem(GLOBAL_VOLUME_KEY, audio.volume.toString());
+    });
+
+    audio.addEventListener('play', () => {
+      applySpeedAndPitch();
+      audio.volume = parseFloat(localStorage.getItem(GLOBAL_VOLUME_KEY) || '1.0');
+    });
+
+    audio.addEventListener('ended', () => {
+      localStorage.removeItem(progressKey);
+    });
+
+    // Run layout paint instantly on page mount initialization
+    updateSliderFill(speedSlider);
+  }
+</script>
+
+<style>
+
+  .podcast-player {
+    background: #171717; /* Default Dark Mode hex state */
+    color: #fff;
+    padding: 1.25rem;
+    border-radius: 6px;
+    border: 1px solid #282828;
+    max-width: 100%;
+    font-family: sans-serif;
+    transition: background-color 0.3s ease, border-color 0.3s ease; /* Smooth transition when toggling modes */
+  }
+
+  /* Target light mode context when parent containers shift states */
+  :global(.light) .podcast-player,
+  :global([data-theme="light"]) .podcast-player {
+    background: #3F3F3F; /* Your lighter hex background requirement */
+    border-color: #4a4a4a; /* Lighten the border slightly so it doesn't clip hard */
+  }
+  
+  /* Top spacing container for the Spotify Badge */
+  .spotify-badge-row {
+    margin-bottom: 0.5rem;
+    display: flex;
+  }
+
+  .player-header {
+    margin-bottom: 0.75rem;
+  }
+
+  h4 {
+    margin: 0;
+    font-size: 1rem;
+    color: #f0f0f0;
+  }
+
+  /* --- Spotify Integration Button --- */
+    .podcast-player .spotify-link-btn span.spotify-btn-text {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: transparent;
+    border: 1px solid rgb(245, 196, 245);
+    color: rgb(245, 196, 245);
+    padding: 0.4rem 0.75rem;
+    border-radius: 20px;
+    font-family: "SF Pro Display", -apple-system-headline, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !important;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+  }
+
+  .spotify-icon {
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+    background-image: url('/branding/spotify_white.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: background-image 0.2s ease-in-out;
+  }
+
+  /* Active/Hover states flip the background image path cleanly */
+  .spotify-link-btn:hover,
+  .spotify-link-btn:active {
+    background-color: rgb(175, 75, 125);
+    border-color: rgb(175, 75, 125);
+    border-radius: 20px;
+    color: #ffffff;
+  }
+
+ .podcast-player .spotify-link-btn span.spotify-btn-text:hover {
+    color:#ffffff;
+ }
+
+  .spotify-link-btn:hover .spotify-icon,
+  .spotify-link-btn:active .spotify-icon {
+    background-image: url('/branding/spotify_white.svg');
+  }
+
+  audio {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  .speed-control-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+  }
+
+  /* --- Advanced Branded Slider Overrides --- */
+  input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 8px; /* Track thickness */
+    border-radius: 4px;
+    background: rgb(175, 75, 125); /* Fallback dark accent */
+    cursor: pointer;
+  }
+
+  input[type="range"]:focus {
+    outline: none;
+  }
+
+  /* Webkit Track (Chrome, Safari, Edge) */
+  input[type="range"]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 8px;
+    background: transparent; /* Handled dynamic fill via JavaScript inline gradients */
+    border-radius: 4px;
+  }
+
+  /* Firefox Track */
+  input[type="range"]::-moz-range-track {
+    width: 100%;
+    height: 8px;
+    background: transparent;
+    border-radius: 4px;
+  }
+
+  /* UPDATED: Minimalist High-Contrast Light Accent Thumb Handle (Chrome/Safari) */
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    margin-top: -4px; /* Perfectly centers the 16px thumb over the 8px track height */
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background-color: rgb(245, 196, 245);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    transition: transform 0.1s ease, background-color 0.1s ease;
+  }
+
+  /* UPDATED: Minimalist High-Contrast Light Accent Thumb Handle (Firefox) */
+  input[type="range"]::-moz-range-thumb {
+    height: 16px;
+    width: 16px;
+    border: none;
+    border-radius: 50%;
+    background-color: rgb(245, 196, 245);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    transition: transform 0.1s ease, background-color 0.1s ease;
+  }
+
+  /* Hover micro-interactions: shifts color slightly lighter and handles scaling updates */
+  input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+    background-color: #ffffff;
+  }
+  input[type="range"]::-moz-range-thumb:hover {
+    transform: scale(1.15);
+    background-color: #ffffff;
+  }
+
+/* --- Custom Branded Checkbox Engine --- */
+  .pitch-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #9b9b9b;
+    font-size: 0.85rem;
+    cursor: pointer;
+    user-select: none;
+    margin-top: 0.5rem;
+  }
+
+  /* Completely hide the ugly native browser browser box input */
+  .pitch-label input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+
+  /* Create your custom box: Set to your deep brand color #964b7d */
+  .pitch-label .checkbox-box {
+    position: relative;
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+    background-color: transparent;
+    border: 2px solid #964b7d;
+    border-radius: 3px;
+    transition: all 0.15s ease-in-out;
+  }
+
+  /* Hover effect: Subtle lift on the empty box layout border boundary */
+  .pitch-label:hover input[type="checkbox"] ~ .checkbox-box {
+    border-color: rgb(245, 196, 245); /* Light Accent flash */
+  }
+
+  /* Active State: Fills the entire background color with your #964b7d plum color when checked */
+  .pitch-label input[type="checkbox"]:checked ~ .checkbox-box {
+    background-color: #964b7d;
+    border-color: #964b7d;
+  }
+
+  /* Construct the White Checkmark outline via CSS Borders inside a hidden pseudo-element */
+  .pitch-label .checkbox-box::after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 4px;
+    top: 1px;
+    width: 4px;
+    height: 8px;
+    border: solid #ffffff; /* Your White Check requirement */
+    border-width: 0 2px 2px 0; /* Creates an L shape angled line tracking matrix */
+    transform: rotate(45deg); /* Flips the angle into a perfect vector checkmark */
+  }
+
+  /* Make the hidden white checkmark visible when the actual input changes state */
+  .pitch-label input[type="checkbox"]:checked ~ .checkbox-box::after {
+    display: block;
+  }
+
+    .podcast-player.pitch-label .checkbox-text span.checkbox-text {
+    transition: color 0.15s ease;
+  }
+
+    :global(.podcast-player) :global(.checkbox-text) {
+    color: #f5c4f5;
+    font-family: sans-serif !important;
+  } 
+
+  .pitch-label:hover .checkbox-text {
+    color: #ffffff;
+  }
+</style>

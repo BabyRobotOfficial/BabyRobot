@@ -1,0 +1,80 @@
+---
+import { render } from 'astro:content';
+import { getEssaySlug, getVisibleEssayRouteEntries, type EssayEntry } from '../../lib/content';
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import { createWithBase } from '../../utils/format';
+import { getThemeSettings, getVisibleArticleMetaTags } from '../../lib/theme-settings';
+
+type ArticleNeighborLink = {
+  href: string;
+  title: string;
+};
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const base = import.meta.env.BASE_URL ?? '/';
+  const withBase = createWithBase(base);
+  
+  // 1. Fetch ALL entries (including works cited so they actually generate!)
+  const routeEntries = await getVisibleEssayRouteEntries();
+  
+  // 2. Create a separate, filtered list JUST for looking up clean neighbors
+  const navigationEntries = routeEntries.filter(({ slug }) => {
+    return !slug.includes('works-cited');
+  });
+
+  // 3. Map over ALL entries so Astro creates every page
+  return routeEntries.map(({ slug, entry }) => {
+    
+    // Find where this specific post sits inside the filtered navigation list
+    const navIndex = navigationEntries.findIndex(nav => nav.slug === slug);
+    
+    let actualPrev = null;
+    let actualNext = null;
+
+    // If this page is a regular essay (exists in our nav list), hook up its clean neighbors
+    if (navIndex !== -1) {
+      const prevItem = navIndex > 0 ? navigationEntries[navIndex - 1] : null;
+      actualPrev = prevItem ? prevItem.entry : null;
+      
+      const nextItem = navIndex < navigationEntries.length - 1 ? navigationEntries[navIndex + 1] : null;
+      actualNext = nextItem ? nextItem.entry : null;
+    } 
+    // If it's a Works Cited page (navIndex === -1), actualPrev and actualNext remain null,
+    // which safely hides the next/prev buttons on the citations page itself!
+
+    return {
+      params: { slug },
+      props: {
+        entry,
+        prev: actualPrev
+          ? { href: withBase(`/archive/${getEssaySlug(actualPrev)}/`), title: actualPrev.data.title }
+          : null,
+        next: actualNext
+          ? { href: withBase(`/archive/${getEssaySlug(actualNext)}/`), title: actualNext.data.title }
+          : null
+      }
+    };
+  });
+}
+
+const { entry, prev, next } = Astro.props as {
+  entry: EssayEntry;
+  prev: ArticleNeighborLink | null;
+  next: ArticleNeighborLink | null;
+};
+const { Content } = await render(entry);
+const articleMetaSettings = getThemeSettings().settings.ui.articleMeta;
+const visibleTags = getVisibleArticleMetaTags(entry.data.tags, 'detail');
+---
+
+<ArticleLayout
+  entry={entry}
+  prev={prev}
+  next={next}
+  articleMetaSettings={articleMetaSettings}
+  visibleTags={visibleTags}
+>
+  <Content />
+</ArticleLayout>

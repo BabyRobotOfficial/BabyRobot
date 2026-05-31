@@ -1,0 +1,72 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+// 📦 Point this exactly to your FAQ markdown content file 
+import * as FAQContent from './faq-content.md'; 
+import BrandIcon from '../../components/BrandIcon.astro';
+import { getThemeSettings } from '../../lib/theme-settings';
+
+// Grab settings safely, but fallback to stable defaults so the page never crashes
+const { settings } = getThemeSettings();
+const faqSubtitle = settings?.page?.memo?.subtitle || "";
+
+// Pull social sharing icons safely if they exist, otherwise default to an empty list
+const rawSocialItems = settings?.site?.socialLinks?.resolvedSocialItems?.filter((item) => item.visible) || [];
+
+// 🎯 FORCE EXACT ORDER DEFINITION
+const STRATEGIC_ORDER: string[] = ['substack', 'spotify', 'x', 'instagram', 'youtube', 'email', 'kofi'];
+
+// 🎯 SORT THE ITEMS MANUALLY BY THE STRATEGIC ORDER INDEX
+const resolvedSocialItems = [...rawSocialItems].sort((a, b) => {
+  let indexA = STRATEGIC_ORDER.indexOf(a.iconKey);
+  let indexB = STRATEGIC_ORDER.indexOf(b.iconKey);
+  
+  if (indexA === -1) indexA = 99;
+  if (indexB === -1) indexB = 99;
+  
+  return indexA - indexB;
+});
+---
+
+<BaseLayout title="FAQ">
+  <div class="page-header page-header--memo">
+    <div class="page-heading">
+      <h1 class="page-title">FAQ</h1>
+      {faqSubtitle ? <span class="page-subtitle">{faqSubtitle}</span> : null}
+    </div>
+    
+    {resolvedSocialItems.length ? (        
+      <div class="page-actions">
+        {resolvedSocialItems.map((item) => (
+          <a class="icon-link" href={item.href} aria-label={item.label} title={item.label}>
+            {/* 🎨 RESTORED THE RE-IMPORTED ICON GRAPHIC COMPONENT */}
+            <BrandIcon name={item.iconKey} class="icon" />
+          </a>
+        ))}
+      </div>
+    ) : null}
+  </div>
+
+  <main class="hero-branding-container">
+    <article class="prose">
+      <FAQContent.Content />
+    </article>
+  </main>
+</BaseLayout>
+
+<style>
+  /* Quick local styles to keep the layout looking clean and polished */
+  .page-header--memo {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--theme-ui-border, #eee);
+  }
+  .page-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+  }
+  .page-subtitle {
+    color: var(--theme-ui-text-muted, #666);
+    font-size: 1.1rem;
+  }
+</style>

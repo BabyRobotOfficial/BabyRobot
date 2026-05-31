@@ -1,0 +1,9 @@
+Folder PATH listing for volume Acer
+Volume serial number is 000000A8 B067:3F30
+C:.
+    ArticleLayout.astro
+    BaseLayout.astro
+    filetree.txt
+    
+No subfolders exist 
+

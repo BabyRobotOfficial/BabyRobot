@@ -1,0 +1,130 @@
+---
+// 入口；支持系统 UI 图标与动态品牌社交图标。
+import type { AstroComponent } from '@lucide/astro';
+import Bold from '@lucide/astro/icons/bold';
+import Book from '@lucide/astro/icons/book';
+import BookOpen from '@lucide/astro/icons/book-open';
+import ChevronDown from '@lucide/astro/icons/chevron-down';
+import ChevronUp from '@lucide/astro/icons/chevron-up';
+import CircleUserRound from '@lucide/astro/icons/circle-user-round';
+import CodeXml from '@lucide/astro/icons/code-xml';
+import Eye from '@lucide/astro/icons/eye';
+import Italic from '@lucide/astro/icons/italic';
+import Link from '@lucide/astro/icons/link';
+import List from '@lucide/astro/icons/list';
+import MapPin from '@lucide/astro/icons/map-pin';
+import Moon from '@lucide/astro/icons/moon';
+import MonitorDot from '@lucide/astro/icons/monitor-dot';
+import PenLine from '@lucide/astro/icons/pen-line';
+import Pilcrow from '@lucide/astro/icons/pilcrow';
+import Quote from '@lucide/astro/icons/quote';
+import Rss from '@lucide/astro/icons/rss';
+import Search from '@lucide/astro/icons/search';
+import SquareArrowRightExit from '@lucide/astro/icons/square-arrow-right-exit';
+import Sun from '@lucide/astro/icons/sun';
+import Tag from '@lucide/astro/icons/tag';
+
+// 🎯 IMPORT: Pull in our raw brand vector strings to handle matches safely
+import { BRAND_SVG_ICON_BODIES } from '../lib/brand-icon-bodies';
+
+type UiIconName =
+  | 'bold'
+  | 'book-closed'
+  | 'book-open'
+  | 'chevron-down'
+  | 'chevron-up'
+  | 'code'
+  | 'eye'
+  | 'italic'
+  | 'link'
+  | 'list'
+  | 'map-pin'
+  | 'moon'
+  | 'monitor-dot'
+  | 'paragraph'
+  | 'pen'
+  | 'quote'
+  | 'reader-exit'
+  | 'rss'
+  | 'search'
+  | 'sun'
+  | 'tag'
+  | 'user-circle';
+
+interface Props {
+  name: UiIconName | string; // 🎯 ALLOW ALL: Allow custom social icon keys to pass through safely
+  size?: number | string;
+  strokeWidth?: number | string;
+  class?: string;
+  ariaLabel?: string;
+}
+
+const {
+  name,
+  size = 24,
+  strokeWidth = 2,
+  class: className = '',
+  ariaLabel
+} = Astro.props as Props;
+
+const uiIconComponents = {
+  bold: Bold,
+  'book-closed': Book,
+  'book-open': BookOpen,
+  'chevron-down': ChevronDown,
+  'chevron-up': ChevronUp,
+  code: CodeXml,
+  eye: Eye,
+  italic: Italic,
+  link: Link,
+  list: List,
+  'map-pin': MapPin,
+  moon: Moon,
+  'monitor-dot': MonitorDot,
+  paragraph: Pilcrow,
+  pen: PenLine,
+  quote: Quote,
+  'reader-exit': SquareArrowRightExit,
+  rss: Rss,
+  search: Search,
+  sun: Sun,
+  tag: Tag,
+  'user-circle': CircleUserRound
+} as const;
+
+// 🎯 DYNAMIC DISPATCH: If it's a UI icon, use the Lucide component. If it's a social link, get the raw SVG path body.
+const isUiIcon = name in uiIconComponents;
+const IconComponent = isUiIcon ? uiIconComponents[name as UiIconName] : null;
+const brandIconBody = !isUiIcon ? BRAND_SVG_ICON_BODIES[name as keyof typeof BRAND_SVG_ICON_BODIES] : null;
+
+const ariaHidden = ariaLabel ? undefined : 'true';
+const role = ariaLabel ? 'img' : undefined;
+---
+
+{isUiIcon && IconComponent ? (
+  <IconComponent
+    class={className}
+    size={size}
+    stroke-width={strokeWidth}
+    aria-hidden={ariaHidden}
+    aria-label={ariaLabel}
+    role={role}
+    focusable="false"
+  />
+) : (
+  /* 🎯 FALLBACK: Render social icons using crisp, inline SVG vector code tags */
+  <svg
+    class={className}
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke={name === 'instagram' ? 'currentColor' : undefined} /* Handle line-drawn icons like instagram clean */
+    stroke-width={name === 'instagram' ? strokeWidth : undefined}
+    aria-hidden={ariaHidden}
+    aria-label={ariaLabel}
+    role={role}
+    focusable="false"
+    set:html={brandIconBody}
+  />
+)}

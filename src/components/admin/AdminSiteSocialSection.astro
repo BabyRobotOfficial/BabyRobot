@@ -1,0 +1,162 @@
+---
+import type { SiteSocialIconKey, SiteSocialPresetId } from '../../lib/theme-settings';
+import AdminSocialCustomRowTemplate from './AdminSocialCustomRowTemplate.astro';
+import AdminSocialPresetRow from './AdminSocialPresetRow.astro';
+
+interface Props {
+  socialCustomLimit: number;
+}
+
+const { socialCustomLimit } = Astro.props;
+
+type SocialIconOption = {
+  value: SiteSocialIconKey;
+  optionLabel: string;
+  defaultLabel: string;
+};
+
+type SocialPresetRow = {
+  id: SiteSocialPresetId;
+  label: string;
+  orderInputId: string;
+  inputId: string;
+  inputType: 'url' | 'email';
+  inputMode: 'url' | 'email';
+  autoComplete: string;
+  placeholder: string;
+};
+
+// 🎯 FIXED: Fully Anglicized labels and whitelisted our new system platforms
+const socialIconOptions: readonly SocialIconOption[] = [
+  { value: 'github', optionLabel: 'GitHub', defaultLabel: 'GitHub' },
+  { value: 'x', optionLabel: 'X / Twitter', defaultLabel: 'X' },
+  { value: 'email', optionLabel: 'Email', defaultLabel: 'Email' },
+  { value: 'spotify', optionLabel: 'Spotify', defaultLabel: 'Spotify' },
+  { value: 'kofi', optionLabel: 'Ko-fi', defaultLabel: 'Ko-fi' },
+  { value: 'substack', optionLabel: 'Substack', defaultLabel: 'Substack' },
+  { value: 'weibo', optionLabel: 'Weibo', defaultLabel: 'Weibo' },
+  { value: 'facebook', optionLabel: 'Facebook', defaultLabel: 'Facebook' },
+  { value: 'instagram', optionLabel: 'Instagram', defaultLabel: 'Instagram' },
+  { value: 'telegram', optionLabel: 'Telegram', defaultLabel: 'Telegram' },
+  { value: 'mastodon', optionLabel: 'Mastodon', defaultLabel: 'Mastodon' },
+  { value: 'bilibili', optionLabel: 'Bilibili', defaultLabel: 'Bilibili' },
+  { value: 'youtube', optionLabel: 'YouTube', defaultLabel: 'YouTube' },
+  { value: 'linkedin', optionLabel: 'LinkedIn', defaultLabel: 'LinkedIn' },
+  { value: 'website', optionLabel: 'Website', defaultLabel: 'Website' } // 🎯 Anglicized 网站 -> Website
+];
+
+const customSocialIconOptions = socialIconOptions.filter(
+  (option) => 
+    option.value !== 'github' && 
+    option.value !== 'x' && 
+    option.value !== 'email' &&
+    option.value !== 'spotify' &&
+    option.value !== 'kofi' &&
+    option.value !== 'substack'
+);
+
+const defaultCustomSocialIconKey: SiteSocialIconKey = customSocialIconOptions[0]?.value ?? 'website';
+
+// 🎯 FIXED: Expanded the static matrix rows to render form inputs for ALL 6 presets
+const socialPresetRows: readonly SocialPresetRow[] = [
+  {
+    id: 'x',
+    label: 'X / Twitter',
+    orderInputId: 'site-social-x-order',
+    inputId: 'site-social-x',
+    inputType: 'url',
+    inputMode: 'url',
+    autoComplete: 'url',
+    placeholder: 'https://x.com/username'
+  },
+  {
+    id: 'email',
+    label: 'Email Address',
+    orderInputId: 'site-social-email-order',
+    inputId: 'site-social-email',
+    inputType: 'email',
+    inputMode: 'email',
+    autoComplete: 'email',
+    placeholder: 'name@example.com'
+  },
+  {
+    id: 'github',
+    label: 'GitHub Profile',
+    orderInputId: 'site-social-github-order',
+    inputId: 'site-social-github',
+    inputType: 'url',
+    inputMode: 'url',
+    autoComplete: 'url',
+    placeholder: 'https://github.com/username'
+  },
+  {
+    id: 'spotify',
+    label: 'Spotify Content',
+    orderInputId: 'site-social-spotify-order',
+    inputId: 'site-social-spotify',
+    inputType: 'url',
+    inputMode: 'url',
+    autoComplete: 'url',
+    placeholder: 'https://open.spotify.com/...'
+  },
+  {
+    id: 'kofi',
+    label: 'Ko-fi Support Page',
+    orderInputId: 'site-social-kofi-order',
+    inputId: 'site-social-kofi',
+    inputType: 'url',
+    inputMode: 'url',
+    autoComplete: 'url',
+    placeholder: 'https://ko-fi.com/username'
+  },
+  {
+    id: 'substack',
+    label: 'Substack Publication',
+    orderInputId: 'site-social-substack-order',
+    inputId: 'site-social-substack',
+    inputType: 'url',
+    inputMode: 'url',
+    autoComplete: 'url',
+    placeholder: 'https://username.substack.com'
+  }
+];
+---
+
+<div class="admin-subgroup">
+  <div class="admin-social-panel">
+    <div class="admin-social-panel__head">
+      <p class="admin-subtitle admin-subtitle--compact">
+        {/* 🎯 FIXED: Anglicized UI Header text: 社交链接 -> Social Profiles */}
+        <span class="admin-subtitle__main">Social Profiles</span>
+        <span id="site-social-custom-count" class="admin-subtitle__hint admin-social-count">
+          (Added 0 / {socialCustomLimit})
+        </span>
+      </p>
+      <div class="admin-social-actions">
+        {/* 🎯 FIXED: Anglicized Button text: 新增链接 -> Add Custom Link */}
+        <button id="site-social-custom-add" class="admin-btn admin-btn--ghost admin-btn--compact" type="button">
+          Add Custom Link
+        </button>
+      </div>
+    </div>
+    <div class="admin-social-table">
+      {/* 🎯 FIXED: Anglicized Column Layout Headers */}
+      <div id="site-social-custom-head" class="admin-social-header" aria-hidden="true">
+        <span class="admin-social-header__order">Order</span> {/* 位置 -> Order */}
+        <span class="admin-social-header__platform">Platform</span> {/* 平台 -> Platform */}
+        <span class="admin-social-header__icon">Icon</span> {/* 图标 -> Icon */}
+        <span class="admin-social-header__href">Target URL</span> {/* 链接地址 -> Target URL */}
+        <span class="admin-social-header__actions">Actions</span> {/* 操作 -> Actions */}
+      </div>
+      <div id="site-social-custom-list" class="admin-social-list">
+        {socialPresetRows.map((row) => <AdminSocialPresetRow row={row} />)}
+      </div>
+    </div>
+  </div>
+
+  <AdminSocialCustomRowTemplate
+    socialIconOptions={socialIconOptions}
+    customSocialIconOptions={customSocialIconOptions}
+    defaultCustomSocialIconKey={defaultCustomSocialIconKey}
+  />
+</div>

@@ -1,0 +1,41 @@
+{
+  "brandTitle": "Baby Robot",
+  "quote": "Baby Robot is an art collective and experimental art laboratory that focuses on AI collaboration, philosophy, news, and partnership.",
+  "nav": [
+    {
+      "id": "essay",
+      "label": "Articles",
+      "ornament": "·",
+      "order": 1,
+      "visible": true
+    },
+    {
+      "id": "bits",
+      "label": "Bits",
+      "ornament": "·",
+      "order": 2,
+      "visible": true
+    },
+    {
+      "id": "memo",
+      "label": "FAQ",
+      "ornament": "·",
+      "order": 3,
+      "visible": true
+    },
+    {
+      "id": "archive",
+      "label": "Archive",
+      "ornament": "·",
+      "order": 4,
+      "visible": true
+    },
+    {
+      "id": "about",
+      "label": "About",
+      "ornament": "·",
+      "order": 6,
+      "visible": true
+    }
+  ]
+}

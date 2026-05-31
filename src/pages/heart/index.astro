@@ -1,0 +1,43 @@
+---
+import EssayPageView from '../../components/EssayPageView.astro';
+import { getPageSlice, getTotalPages, getVisibleEssays } from '../../lib/content';
+import { PAGE_SIZE_ESSAY } from '../../../site.config.mjs';
+import { getThemeSettings } from '../../lib/theme-settings';
+
+const { settings } = getThemeSettings();
+
+// 🎯 Pull data exactly like About page to avoid the structure trap
+const baseResolvedItems = settings.site.socialLinks.resolvedSocialItems.filter((item) => item.visible);
+const STRATEGIC_ORDER = ['substack', 'spotify', 'x', 'instagram', 'youtube', 'email', 'kofi'];
+
+const socialItems = baseResolvedItems.map((item) => ({
+  key: item.id,
+  href: item.href,
+  label: item.label,
+  title: item.label,
+  icon: item.iconKey
+})).sort((a, b) => {
+  let indexA = STRATEGIC_ORDER.indexOf(a.icon);
+  let indexB = STRATEGIC_ORDER.indexOf(b.icon);
+  if (indexA === -1) indexA = 99;
+  if (indexB === -1) indexB = 99;
+  return indexA - indexB;
+});
+
+const allVisibleEssays = await getVisibleEssays();
+const heartEssays = allVisibleEssays.filter(essay => essay.data.section === 'heart');
+const totalPages = getTotalPages(heartEssays.length, PAGE_SIZE_ESSAY);
+const currentPage = 1;
+const pageEssays = getPageSlice(heartEssays, currentPage, PAGE_SIZE_ESSAY);
+---
+
+<EssayPageView
+  items={pageEssays}
+  resultCount={heartEssays.length}
+  currentPage={currentPage}
+  totalPages={totalPages}
+  prevPath={null}
+  nextPath={currentPage < totalPages ? `/heart/page/${currentPage + 1}/` : null}
+  indexUrlOverride="/heart/index.json"
+  socialItems={socialItems}
+/>

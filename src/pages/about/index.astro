@@ -1,0 +1,116 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import * as AboutContent from './about-content.md';
+import BrandIcon from '../../components/BrandIcon.astro';
+import '../../styles/about.css';
+import { getThemeSettings, type SiteSocialIconKey } from '../../lib/theme-settings';
+
+const { settings } = getThemeSettings();
+const resolvedSocialItems = settings.site.socialLinks.resolvedSocialItems.filter((item) => item.visible);
+const aboutTitle = settings.page.about.title;
+const aboutSubtitle = settings.page.about.subtitle;
+
+type SocialActionItem = {
+  key: string;
+  href: string;
+  label: string;
+  title: string;
+  icon: SiteSocialIconKey;
+};
+
+type ContactItem = {
+  key: string;
+  href: string;
+  icon: SiteSocialIconKey;
+  text: string;
+};
+
+const formatExternalLabel = (href: string): string => {
+  try {
+    const parsed = new URL(href);
+    const path = parsed.pathname.replace(/^\/+|\/+$/g, '');
+    return path || parsed.hostname;
+  } catch {
+    return href;
+  }
+};
+
+// 🎯 FORCE EXACT ORDER DEFINITION
+const STRATEGIC_ORDER: string[] = ['substack', 'spotify', 'x', 'instagram', 'youtube', 'email', 'kofi'];
+
+const baseSocialItems: SocialActionItem[] = resolvedSocialItems.map((item) => ({
+  key: item.id,
+  href: item.href,
+  label: item.label,
+  title: item.label,
+  icon: item.iconKey
+}));
+
+// 🎯 SORT THE ITEMS MANUALLY BY THE STRATEGIC ORDER INDEX
+const socialItems = baseSocialItems.sort((a, b) => {
+  let indexA = STRATEGIC_ORDER.indexOf(a.icon);
+  let indexB = STRATEGIC_ORDER.indexOf(b.icon);
+  
+  // If an icon isn't in our array for some reason, push it to the end
+  if (indexA === -1) indexA = 99;
+  if (indexB === -1) indexB = 99;
+  
+  return indexA - indexB;
+});
+
+const contactItems: ContactItem[] = resolvedSocialItems.map((item) => ({
+  key: item.id,
+  href: item.href,
+  icon: item.iconKey,
+  text: item.id === 'email' ? item.href.replace(/^mailto:/i, '') : formatExternalLabel(item.href)
+})).sort((a, b) => {
+  let indexA = STRATEGIC_ORDER.indexOf(a.icon);
+  let indexB = STRATEGIC_ORDER.indexOf(b.icon);
+  if (indexA === -1) indexA = 99;
+  if (indexB === -1) indexB = 99;
+  return indexA - indexB;
+});
+---
+
+<BaseLayout title={aboutTitle} bodyClass="about-page">
+  <div class="page-header page-header--about">
+    <div class="page-heading">
+      <h1 class="page-title">{aboutTitle}</h1>
+      {aboutSubtitle ? <span class="page-subtitle">{aboutSubtitle}</span> : null}
+    </div>
+    {
+      socialItems.length ? (        
+        <div class="page-actions">
+          {socialItems.map((item) => (
+            <a class="icon-link" href={item.href} aria-label={item.title} title={item.title}>
+              <BrandIcon name={item.icon} class="icon" />
+            </a>
+          ))}
+        </div>
+      ) : null
+    }
+  </div>
+
+  <main class="about-layout-container">
+    <div class="prose">
+      <AboutContent.Content />
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  /* Cleans up the typography and content layout boundaries */
+  .about-layout-container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 2rem 0;
+  }
+  
+  /* Styling hooks to make sure your Markdown tags look crisp and professional */
+  .prose h1 { font-size: 2.25rem; margin-bottom: 1.5rem; font-weight: 700; }
+  .prose h2 { font-size: 1.75rem; margin-top: 2rem; margin-bottom: 1rem; font-weight: 600; }
+  .prose p { margin-bottom: 1.25rem; line-height: 1.7; }
+  .prose ul { margin-bottom: 1.25rem; padding-left: 1.5rem; list-style-type: disc; }
+  .prose li { margin-bottom: 0.5rem; }
+  .prose img { width: 100%; height: auto; border-radius: 6px; margin: 2rem 0; }
+</style>

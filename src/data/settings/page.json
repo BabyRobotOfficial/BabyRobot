@@ -1,0 +1,26 @@
+{
+  "essay": {
+    "title": "The Heart",
+    "subtitle": null
+  },
+  "archive": {
+    "title": "Archive",
+    "subtitle": null
+  },
+  "bits": {
+    "title": "The Brain",
+    "subtitle": null,
+    "defaultAuthor": {
+      "name": "The Baby Robot Team",
+      "avatar": "images/about/logo_main256.png"
+    }
+  },
+  "memo": {
+    "title": "FAQ",
+    "subtitle": null
+  },
+  "about": {
+    "title": "About",
+    "subtitle": null
+  }
+}

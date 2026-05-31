@@ -1,0 +1,46 @@
+---
+import ArchivePageView from '../../components/ArchivePageView.astro';
+// 🎯 CHANGED: Import getVisibleEssays instead of getArchiveEssays
+import { getVisibleEssays, getPageSlice, getTotalPages } from '../../lib/content';
+import { collectTagSummary } from '../../lib/tags';
+import { PAGE_SIZE_ARCHIVE } from '../../../site.config.mjs';
+import { getThemeSettings } from '../../lib/theme-settings';
+
+const { settings } = getThemeSettings();
+
+const baseResolvedItems = settings.site.socialLinks.resolvedSocialItems.filter((item) => item.visible);
+const STRATEGIC_ORDER = ['substack', 'spotify', 'x', 'instagram', 'youtube', 'email', 'kofi'];
+
+const socialItems = baseResolvedItems.map((item) => ({
+  key: item.id,
+  href: item.href,
+  label: item.label,
+  title: item.label,
+  icon: item.iconKey
+})).sort((a, b) => {
+  let indexA = STRATEGIC_ORDER.indexOf(a.icon);
+  let indexB = STRATEGIC_ORDER.indexOf(b.icon);
+  if (indexA === -1) indexA = 99;
+  if (indexB === -1) indexB = 99;
+  return indexA - indexB;
+});
+
+// 🎯 CHANGED: Fetch the visible articles pool directly so your test posts load
+const archiveItems = await getVisibleEssays();
+const tagSummaries = collectTagSummary(archiveItems);
+const totalPages = getTotalPages(archiveItems.length, PAGE_SIZE_ARCHIVE);
+const currentPage = 1;
+const pageItems = getPageSlice(archiveItems, currentPage, PAGE_SIZE_ARCHIVE);
+---
+
+<ArchivePageView
+  items={pageItems}
+  resultCount={archiveItems.length}
+  currentPage={currentPage}
+  totalPages={totalPages}
+  currentPath="/archive/"
+  prevPath={null}
+  nextPath={currentPage < totalPages ? `/archive/page/${currentPage + 1}/` : null}
+  tagSummaries={tagSummaries}
+  socialItems={socialItems}
+/>
