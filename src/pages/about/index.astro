@@ -18,23 +18,6 @@ type SocialActionItem = {
   icon: SiteSocialIconKey;
 };
 
-type ContactItem = {
-  key: string;
-  href: string;
-  icon: SiteSocialIconKey;
-  text: string;
-};
-
-const formatExternalLabel = (href: string): string => {
-  try {
-    const parsed = new URL(href);
-    const path = parsed.pathname.replace(/^\/+|\/+$/g, '');
-    return path || parsed.hostname;
-  } catch {
-    return href;
-  }
-};
-
 // 🎯 FORCE EXACT ORDER DEFINITION
 const STRATEGIC_ORDER: string[] = ['substack', 'spotify', 'x', 'instagram', 'youtube', 'email', 'kofi'];
 
@@ -55,19 +38,6 @@ const socialItems = baseSocialItems.sort((a, b) => {
   if (indexA === -1) indexA = 99;
   if (indexB === -1) indexB = 99;
   
-  return indexA - indexB;
-});
-
-const contactItems: ContactItem[] = resolvedSocialItems.map((item) => ({
-  key: item.id,
-  href: item.href,
-  icon: item.iconKey,
-  text: item.id === 'email' ? item.href.replace(/^mailto:/i, '') : formatExternalLabel(item.href)
-})).sort((a, b) => {
-  let indexA = STRATEGIC_ORDER.indexOf(a.icon);
-  let indexB = STRATEGIC_ORDER.indexOf(b.icon);
-  if (indexA === -1) indexA = 99;
-  if (indexB === -1) indexB = 99;
   return indexA - indexB;
 });
 ---

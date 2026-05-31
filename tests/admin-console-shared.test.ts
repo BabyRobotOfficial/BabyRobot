@@ -25,7 +25,7 @@ describe('admin-console/shared', () => {
   it('reports duplicate and range issues for social orders', () => {
     expect(
       getAdminSocialOrderIssues(
-        { github: 1, x: 1, email: 99 },
+        { github: 1, x: 1, email: 99, spotify: 0, kofi: 0, substack: 0 },
         [{ key: 'custom-1', order: 2 }, { key: 'custom-2', order: 2 }]
       )
     ).toEqual([

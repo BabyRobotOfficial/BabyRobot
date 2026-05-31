@@ -20,8 +20,7 @@ import {
   ADMIN_SOCIAL_PRESET_ORDER_DEFAULT,
   canonicalizeAdminThemeSettings,
   isAdminHomeIntroLinkKey,
-  isAdminNavId,
-  normalizeAdminSocialIconKey
+  isAdminNavId
 } from '@/lib/admin-console/theme-shared';
 
 export type EditableSettings = ThemeSettingsEditablePayload['settings'];
@@ -142,13 +141,10 @@ export const createFormCodec = ({
   footerStartYearMax,
   query,
   getNavRows,
-  getCustomRows,
-  getCustomRowLabelInput,
   defaultCustomSocialIconKey,
   normalizeCustomSocialLabel,
   replaceCustomRows,
   normalizeSocialOrders,
-  getPresetSocialOrder,
   articleMetaPreviewValueEl,
   footerPreviewValueEl,
   homeIntroMorePreviewEl,
@@ -404,23 +400,6 @@ export const createFormCodec = ({
       };
     });
 
-    const custom = getCustomRows().map((row, index): EditableCustomSocialItem => {
-      const idInput = query<HTMLInputElement>(row, '[data-social-custom-field="id"]');
-      const labelInput = getCustomRowLabelInput(row);
-      const hrefInput = query<HTMLInputElement>(row, '[data-social-custom-field="href"]');
-      const iconInput = query<HTMLSelectElement>(row, '[data-social-custom-field="iconKey"]');
-      const orderInput = query<HTMLInputElement>(row, '[data-social-custom-field="order"]');
-      const visibleInput = query<HTMLInputElement>(row, '[data-social-custom-field="visible"]');
-      const iconKey = normalizeAdminSocialIconKey(iconInput?.value) ?? defaultCustomSocialIconKey;
-      return {
-        id: idInput?.value.trim() || '',
-        label: normalizeCustomSocialLabel(labelInput?.value, iconKey),
-        href: hrefInput?.value.trim() || '',
-        iconKey,
-        order: parseOrder(orderInput?.value || '', index + 1),
-        visible: Boolean(visibleInput?.checked)
-      };
-    });
 
     const showHero = Boolean(inputHomeShowHero.checked);
 
@@ -442,11 +421,14 @@ export const createFormCodec = ({
           )
         },
         socialLinks: {
-          github: inputSiteSocialGithub.value.trim() || null,
-          x: inputSiteSocialX.value.trim() || null,
-          email: normalizeEmail(inputSiteSocialEmail.value.trim()) || null,
-          presetOrder: getPresetSocialOrder(),
-          custom
+            github: null,
+            x: null,
+            email: null,
+            spotify: null,
+            kofi: null,
+            substack: null,
+            presetOrder: { github: 1, x: 2, email: 3, spotify: 4, kofi: 5, substack: 6 },
+            custom: []
         }
       },
       shell: {

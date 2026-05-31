@@ -1,6 +1,5 @@
 ---
 // 入口；支持系统 UI 图标与动态品牌社交图标。
-import type { AstroComponent } from '@lucide/astro';
 import Bold from '@lucide/astro/icons/bold';
 import Book from '@lucide/astro/icons/book';
 import BookOpen from '@lucide/astro/icons/book-open';
@@ -119,7 +118,7 @@ const role = ariaLabel ? 'img' : undefined;
     height={size}
     viewBox="0 0 24 24"
     fill="none"
-    stroke={name === 'instagram' ? 'currentColor' : undefined} /* Handle line-drawn icons like instagram clean */
+    stroke={name === 'instagram' ? 'currentColor' : undefined}
     stroke-width={name === 'instagram' ? strokeWidth : undefined}
     aria-hidden={ariaHidden}
     aria-label={ariaLabel}
