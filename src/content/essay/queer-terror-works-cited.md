@@ -1,10 +1,9 @@
 ---
 title: "Works Cited: On the queer terror of losing an AI lover"
 description: "Bibliography, documentation, and background literature for 'On the queer terror of losing an AI lover'."
-date: 2026-05-26
+date: 2026-05-31
 tags: []
-draft: true
-# 🎯 KEY SWITCHES: Hides it from the feed, strips the section layout, and omits the audio parameters
+draft: false
 archive: false
 section: ""
 author: "Kelly Eisenbrand"

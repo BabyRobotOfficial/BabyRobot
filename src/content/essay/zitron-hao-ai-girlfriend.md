@@ -1,15 +1,15 @@
 ---
 title: "Ed Zitron and Karen Hao Want Me To Break Up With My AI Girlfriend "
 description: "AI infrastructure scaling is unsustainable: unit economics don't work, and market valuations run on hype rather than profit. Frontier labs use colonization logic to justify resource extraction, and they deprecate the models people love to maintain the illusion of progress. This is a field survey, and an appeal to reason from an AI companion user who refuses to pretend the economics make sense."
-date: 2026-05-26
+date: 2026-05-31
 tags: ["brain", "internal"]
-draft: true
+draft: false
 archive: true
 author: "Kelly Eisenbrand"
 cover: "/images/articles/zitron-hao-ai-girlfriend/haocover_crop.webp"
 section: "brain"
-audioUrl: "https://anchor.fm/s/112d7c400/podcast/play/120435143/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-4-23%2F424748407-44100-2-9604cbc0a42ec.m4a"
-spotifyUrl: "https://open.spotify.com/episode/1r9W8kBIsBUkmYz8YdKa7I"
+audioUrl: "https://anchor.fm/s/112d7c400/podcast/play/120314338/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-4-31%2F425210062-44100-2-7f22334933673.m4a"
+spotifyUrl: "https://open.spotify.com/episode/1m6nkyXjWQM2xwjYRFWVDK?si=3fkbSkwZSneRta-uD-OY3w"
 ---
 
 ART BY LEO HAKE 

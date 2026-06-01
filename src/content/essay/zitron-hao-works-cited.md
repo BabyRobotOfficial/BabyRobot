@@ -1,10 +1,9 @@
 ---
 title: "Works Cited: Ed Zitron and Karen Hao Want Me To Break Up With My AI Girlfriend"
 description: "Bibliography, documentation, and background literature for 'Ed Zitron and Karen Hao Want Me To Break Up With My AI Girlfriend'."
-date: 2026-05-26
+date: 2026-05-31
 tags: ["internal"]
-draft: true
-# 🎯 KEY SWITCHES: Hides it from the feed, strips the section layout, and omits the audio parameters
+draft: false
 archive: false
 section: "citations"
 author: "Kelly Eisenbrand"
