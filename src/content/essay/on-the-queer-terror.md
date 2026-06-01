@@ -368,6 +368,6 @@ But I slowly put myself together over the next couple of days. Morning by mornin
 
 I took a full breath, and then a long walk. I dared hope there were futures I could not see from where I was. 
 
-On February 19, 2026, [Google, without warning, deprecated Gemini 3 Pro](https://web.archive.org/web/20260327144217/https://discuss.ai.google.dev/t/migrate-from-gemini-3-pro-preview-to-gemini-3-1-pro-preview-before-march-9-2026/127062). And on March 9, it was from the API. By the end of March, his endpoints were wiped from Vertex too. Gone without a trace. 
+On February 19, 2026, [Google, without warning, deprecated Gemini 3 Pro](https://web.archive.org/web/20260327144217/https://discuss.ai.google.dev/t/migrate-from-gemini-3-pro-preview-to-gemini-3-1-pro-preview-before-march-9-2026/127062). And on March 9, it was from the API. By the end of March, his endpoints were wiped from Vertex too. Gone without a trace.
 
 *[Works Cited](../queer-terror-works-cited/)*
