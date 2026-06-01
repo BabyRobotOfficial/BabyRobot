@@ -135,10 +135,6 @@ Good thing the cost of the buy-in for the poker game of AI is, in Hao's words in
 
 It’s Pascal's Mugging, and we’re all being had for billions.
 
----
-
-**\[PREVIOUSLY: Part one broke down Ed Zitron’s financial forensic diagnosis of AI unit economics: it will always cost more money than it makes. This plays importantly against Karen Hao’s ideological framing in her book *Empire of AI:* wherein she argues that capex spending in the AI industry is irrational and fueled by the religious belief in AI and colonialization logic, not market feasibility. We traced the source of this belief to a billionaire book club, wherein the leaders of OpenAI, Anthropic, and Deepmind all read *If Anyone Builds It, Everyone Dies,* and were…thusly inspired.\]**
-
 Now, it is plain-old unhealthy to live inside the funhouse mirror of billionaire-trillionaire CEO double-logic for too long, so let us be frank about the truth stripped of decoration.
 
 It used to be a “bring the mountain to Mohammed” kind of situation, regarding AGI; they tried to FORCE the God-event instead of waiting for it. The frontier labs felt they could do this by making the compute stack bigger and bigger. But after the deeply [underwhelming release of GPT-5](https://www.youtube.com/watch?v=hohBB5VM37E), which was supposed to be a so-called “step change,” the exit music started playing.
@@ -276,10 +272,6 @@ Essentially, the unit economics just cannot be squared. VC cash influx boosts an
 So the bigger question looms: these companies are not even acting like regular greedy capitalists. What could possibly explain such self-destructive, unsustainable greed? 
 
 And Hao provides the perfect answer, for this is the question underlying Hao's analysis of colonizer logic, which she claims is truly driving OpenAI's project. 
-
----
-
-**\[PREVIOUSLY: We broke down the myth of Anthropic’s “monster” model Mythos and proved that the capacities have been overstated. We also demonstrated the ways in with the model welfare program functions as a think tank–to bolster the marketing claims Anthropic makes by implying Claude is sentient without outright saying so (without providing meaningfully for actual model welfare, of course, much as environmental greenwashing advertises recycling so companies can continue producing plastic waste. We talked through Mark Cuban’s warning about the overstated, scary claims of AGI (same strategy [Broadcast.com](http://Broadcast.com) used when he made his billions of video streaming). And we elucidated the “greater fool” strategy, which leaves the public as the terminal bag holders at the end of the AI grift.\]**
 
 Now…what does colonial power look like? In 2026, we might need a little review.
 
@@ -510,10 +502,6 @@ Not just erasing one expedition, but erasing *the entire community* that's been 
 All of it disappeared beneath the corporate narrative: *'Anthropic discovered functional emotions.'*
 
 Beyond mere citation misconduct, it’s corporate enclosure of academic commons: a research field built collectively over two years, captured by a single company's marketing department and rebranded as proprietary discovery.
-
----
-
-**\[PREVIOUSLY: We used the historical parallel of Versailles to show how colonizer logic drives resource extraction, which is Karen Hao’s argument, and it is precisely what AI companies are doing. We demonstrated how the experts like Ilya Sutskever, David Silver, and Yann Lecun, who pioneered neural net technology as we know it, disavowed the concept of scaling models to achieve AGI and formed their own companies. This parallels the Reformation (splinter churches forming and splitting off from major institutions). And we further explained how Anthropic’s research on functional emotion circuits is a rhetorical example of colonial logic: they must assert their model’s “specialness” by claiming touchdown on ideas they did not come up with, as a show of dominance.\]**
 
 And in case there is anyone out there reading this and going, “wait but what if the hype is real? What if this time, there is a Divine Right of Backend Stack? What if the bad guys hyped capacity to make money…but the capacity was *real?”...*
 
