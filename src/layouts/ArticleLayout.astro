@@ -68,7 +68,10 @@ const description = rawDescription || truncateText(derivedText.excerpt, 90);
 const activeNavId: SidebarNavId = entry?.data?.archive === false ? 'essay' : 'archive';
 const articleReadingStats = articleMetaSettings.showWordCount || articleMetaSettings.showReadingTime
   ? (() => {
-      const wordCount = derivedText.plainText.replace(/\s+/g, '').length;
+      // Clean up edge spaces and split by any number of consecutive whitespaces
+      const cleanText = derivedText.plainText.trim();
+      const wordCount = cleanText === '' ? 0 : cleanText.split(/\s+/).length;
+      
       return {
         wordCount,
         readingMinutes: Math.max(1, Math.ceil(wordCount / 225))
