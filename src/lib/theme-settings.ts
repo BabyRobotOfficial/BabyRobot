@@ -537,7 +537,7 @@ const DEFAULT_UI: UiSettings = {
     showDate: true,
     dateLabel: ADMIN_ARTICLE_META_DATE_LABEL_DEFAULT,
     showTags: true,
-    showWordCount: true,
+    showWordCount: false,
     showReadingTime: true
   },
   layout: {
