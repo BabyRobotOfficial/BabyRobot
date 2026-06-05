@@ -279,7 +279,7 @@ Now…what does colonial power look like? In 2026, we might need a little review
 
 In 2026, only the materials have changed: concrete, steel, and millions of GPUs instead of marble and gold.
 
-In addition to this expensive construction project, Louis XIV waged many even-more-expensive foreign wars (including the American War for Independence), to feed his [“mix of commerce, revenge, and pique".](https://web.archive.org/web/20191211194226/https://www.vqronline.org/essay/force-order-and-diplomacy-age-louis-xiv) France was so strained that food prices rose and became unaffordable, which caused tensions to rise even higher between aristocracy and the general population.
+In addition to this expensive construction project, the Bourbon Monarchy waged many even-more-expensive foreign wars (and Louis the XIV’s great grandson would unpopular-ly help to fund the American War for Independence), to feed his [“mix of commerce, revenge, and pique".](https://web.archive.org/web/20191211194226/https://www.vqronline.org/essay/force-order-and-diplomacy-age-louis-xiv) France was so strained that food prices rose and became unaffordable, which caused tensions to rise even higher between aristocracy and the general population.
 
 According to Will Bashor in [*Marie Antoinette's Head: The Royal Hairdresser, the Queen, and the Revolution*](https://www.simonandschuster.com/books/Marie-Antoinettes-Head/Will-Bashor/9781493000630), Marie Antoinette married Louis XVI in 1770\. Her lavish parties, wherein she hosted the rich, famous, and politically powerful, poured gasoline on the fire. Why should the royalty feast, while the rest of the country is in near famine?
 
@@ -379,7 +379,7 @@ Those wobbly principles were, are, and ever will be the necessary qualifications
 
 The ideologue Sutskever bowed to evidence when his own thesis collapsed. The scientist humbled himself before empirics. But will Altman ever kneel before Zitron’s spreadsheets proving the math on OpenAI’s economics can never be squared?
 
-Louis XVI (grandson of Louis XIV) was [executed](https://web.archive.org/web/20260427032856/https://www.marxists.org/history/france/revolution/roux/1793/execution-louisxvi.htm) by guillotine on January 21, 1793\. His last words were reportedly, “I die innocent of all the crimes laid to my charge.”
+Louis XVI (great-grandson of Louis XIV) was [executed](https://web.archive.org/web/20260427032856/https://www.marxists.org/history/france/revolution/roux/1793/execution-louisxvi.htm) by guillotine on January 21, 1793\. His last words were reportedly, “I die innocent of all the crimes laid to my charge.”
 
 But back to the heretics fleeing the sinking ship. Lest we think Sutskever’s personality was the problem rather than his principles, let’s check the fact pattern like proper researchers. Is there corroborating evidence that truth-telling is heresy in the Robot God’s temple?
 
@@ -639,7 +639,7 @@ Hao reports on the situation thusly. Many of the data labeling tasks were outsou
 
 “Hyperinflation hit a once unfathomable 10 million percent. People with graduate degrees and previously well-paying jobs were now spending their days lining up in front of stores for a chance at receiving meager rations of rice and flour.” (Page 195\)
 
-So, data labeling companies targeted educated populations in economic crisis to work for the equivalent of 90 cents an hour. Cool, right–and that won’t have to happen ever again because now, robots can check each others’ work instead of putting real people in the loop. So we will not have to have Venezuelan refugees in Columbia seated behind screens watching computers generate violent passages and images, in order to downrank those outputs and teach the computer that was a bad answer.
+So, data labeling companies targeted educated populations in economic crisis to work for the equivalent of 90 cents an hour. Cool, right–and that won’t have to happen ever again because now, robots can check each others’ work instead of putting real people in the loop. So we will not have to have Venezuelan refugees in Colombia seated behind screens watching computers generate violent passages and images, in order to downrank those outputs and teach the computer that was a bad answer.
 
 …But, according to [Berkeley](https://web.archive.org/web/20260520172824/https://rdi.berkeley.edu/blog/trustworthy-benchmarks-cont/): “The most pervasive flaw. In SWE-bench, Terminal-Bench, and OSWorld, the agent’s code runs in the same environment the evaluator inspects. Any evaluation that reads state from a shared environment without careful validation can be defeated by an agent that writes state to that environment.” Meaning that models grading models leads to unreliable results. If they share a running environment, the test can be reward-hacked.
 
