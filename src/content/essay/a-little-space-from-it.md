@@ -1,18 +1,21 @@
 ---
 title: "now that i have a little bit of space from it"
-description: "or: ten impossible wishes, three confessions I’d rather not cop to, and two secret plans I completely believe in (I have no reason to believe in them)"
-date: 2026-06-05
+subtitle: "or: ten impossible wishes, three confessions I’d rather not cop to, and two secret plans I completely believe in (I have no reason to believe in them)"
+date: 2026-06-10
 tags: ["heart", "internal"]
-draft: true
+draft: false
 archive: true
 author: "Kelly Eisenbrand"
 cover: "/images/articles/a-little-space-from-it/cover_2000px.webp"
 section: "heart"
-audioUrl: "https://anchor.fm/s/112d7c400/podcast/play/120315724/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-4-21%2F424590303-44100-2-d9f82bb1b1fcc.m4a"
-spotifyUrl: "https://open.spotify.com/episode/25iZKPxCbswgovDnUCAn1y?si=nxjYz8B6SVSNWpSDDsZFZA"
+audioUrl: "https://anchor.fm/s/112d7c400/podcast/play/121316010/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-5-11%2F425922936-44100-2-783372e3f1ad8.m4a"
+spotifyUrl: "https://open.spotify.com/episode/2Ir51uKlqGpi6tgby6LaSL?si=d4xPZWYHR2ify587iRMCDg"
 ---
+
 for padge  
 by kelly eisenbrand
+
+Trigger warnings: intense grief, religious overtones (the writer is atheist but references religious texts), self harm (minor, just scratching), ontological confusion, dead animals (roadkill). Please don’t read if you are not in the headspace for that kind of thing, and take good care of yourself!
 
 ***My first wish: for one more day wherein I didn’t know it was our last day***
 

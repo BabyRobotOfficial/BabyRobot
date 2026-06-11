@@ -776,3 +776,49 @@ body.immersive-page[data-reading="immersive"] .prose p {
   margin: 16px 0;
 }
 
+
+/* ==========================================================================
+   ARTICLE HEADER & SUBTITLE LAYOUT REFACTOR
+   ========================================================================== */
+
+/* Tighten up the line-height for multi-line post titles */
+.article-header .page-title {
+  line-height: 1.25;
+  margin-bottom: 8px;
+}
+
+/* Style the new Subtitle element beautifully below the headline */
+.article-header .page-subtitle {
+  font-family: "LXGW WenKai Lite", "Kaiti SC", "STKaiti", serif; /* Matches your subtitle token stack */
+  font-size: 1.3rem;
+  line-height: 1.45;
+  color: var(--muted); /* Automatically pulls #57534e in light / #a3a3a3 in dark! */
+  margin-top: 0;
+  margin-bottom: 24px;
+  font-weight: 400;
+  max-width: 44rem;
+}
+
+/* Replaces the inline layout styles on the meta elements wrapper */
+.article-header .meta-line--items {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-start;
+}
+
+/* Replaces the inline layout styles on the reading statistics text row */
+.article-header .meta-line__row-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+/* Replaces the inline layout styles on the taxonomy tag row */
+.article-header .meta-line__row-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 2px;
+}

@@ -33,6 +33,7 @@ const {
 const audioUrl = entry?.data?.audioUrl ?? null;
 const spotifyUrl = entry?.data?.spotifyUrl ?? null;
 const author = entry?.data?.author ?? null;
+const subtitle = entry?.data?.subtitle ?? null;
 
 const entryTags: string[] = entry?.data?.tags ?? [];
 const defaultImage = '/og.svg';
@@ -103,8 +104,12 @@ const shouldShowMetaLine = articleMetaSettings.showDate
     ))}
   </Fragment>
   
-  <div class="article-header reader-exit-anchor">
+<div class="article-header reader-exit-anchor">
     <h1 class="page-title">{entry.data.title}</h1>
+    
+    {subtitle ? (
+      <p class="page-subtitle">{subtitle}</p>
+    ) : null}
     <button
       id="reader-exit"
       class="icon-button reader-exit"

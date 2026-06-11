@@ -13,19 +13,16 @@ const slugRule = z
 
 const essayBaseFields = {
   title: z.string(),
+  subtitle: z.string().optional(),
   description: z.string().optional(),
   date: z.unknown(),
   tags: z.array(z.string()).default([]),
-    cover: z.string().optional().nullable(),
+  cover: z.string().optional().nullable(),
   draft: z.boolean().default(false),
   archive: z.boolean().default(true),
   publishedAt: z.unknown().optional(),
-  // Optional custom permalink. If present, it overrides the default public slug
-  // derived from the entry id / path.
   slug: slugRule.optional(),
   section: z.string().optional(),
-  
-  // 🎯 THE FIX: Add the optional author text string right here!
   author: z.string().optional()
 };
 
