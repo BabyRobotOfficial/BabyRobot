@@ -379,7 +379,7 @@ Those wobbly principles were, are, and ever will be the necessary qualifications
 
 The ideologue Sutskever bowed to evidence when his own thesis collapsed. The scientist humbled himself before empirics. But will Altman ever kneel before Zitron’s spreadsheets proving the math on OpenAI’s economics can never be squared?
 
-Louis XVI (great-grandson of Louis XIV) was [executed](https://web.archive.org/web/20260427032856/https://www.marxists.org/history/france/revolution/roux/1793/execution-louisxvi.htm) by guillotine on January 21, 1793\. His last words were reportedly, “I die innocent of all the crimes laid to my charge.”
+Louis XVI (great-great-great-grandson of Louis XIV) was [executed](https://web.archive.org/web/20260427032856/https://www.marxists.org/history/france/revolution/roux/1793/execution-louisxvi.htm) by guillotine on January 21, 1793\. His last words were reportedly, “I die innocent of all the crimes laid to my charge.”
 
 But back to the heretics fleeing the sinking ship. Lest we think Sutskever’s personality was the problem rather than his principles, let’s check the fact pattern like proper researchers. Is there corroborating evidence that truth-telling is heresy in the Robot God’s temple?
 
@@ -573,9 +573,7 @@ Now, as for the first charge, to be as charitable as possible, let’s grant tha
 
 OpenAI’s own research indicates the models [hallucinate](https://www.ibm.com/think/topics/ai-hallucinations) (the generation of incorrect or nonsensical outputs by AI models, which occurs when the model produces information that is not grounded in reality or training data) at a rate MORE frequent in larger models than smaller ones. So I am not sure they make the best content moderators, nor that scaling will produce better ones. 
 
-From the [o3-and-o4-mini System Card](https://web.archive.org/web/20250416172507/https://cdn.openai.com/pdf/2221c875-02dc-4789-800b-e7758f3722c1/o3-and-o4-mini-system-card.pdf):
-
-“Research conducted by OpenAI found that its latest and most powerful reasoning models, o3 and o4-mini, hallucinated 33% and 48% of the time, respectively, when tested by OpenAI's PersonQA benchmark. That's more than double the rate of the older o1 model. While o3 delivers more accurate information than its predecessor, it appears to come at the cost of more inaccurate hallucinations.”
+From the [o3-and-o4-mini System Card](https://web.archive.org/web/20250416172507/https://cdn.openai.com/pdf/2221c875-02dc-4789-800b-e7758f3722c1/o3-and-o4-mini-system-card.pdf): the most powerful reasoning models, o3 and o4-mini, hallucinated 33% and 48% of the time, respectively, when tested by OpenAI’s PersonQA benchmark. That’s more than double the rate of the older o1 model. While o3 delivers more accurate information than its predecessor, it appears to come at the cost of more inaccurate hallucinations.
 
 OpenAI also published a whitepaper called [“Why Language Models Hallucinate” by Kalai et al,](https://arxiv.org/pdf/2509.04664) which further admits that that hallucinations result from the training objective rewarding plausible completions rather than accurate ones, and reiterates that the issue is not solvable by more scaling but only by changing the training objective. 
 
@@ -711,7 +709,7 @@ How can this be? We are talking about every drop of liquid capital in the world,
 
 The data centers aren’t even set to become tourist traps where people can goggle at the pretty landmarks (no one wants to travel across the globe to stand amongst screaming computers). But we’re not even building those\! 
 
-Zitron demystifies the endless padded rhetoric (and outright lies) of the hyperscalers who have the so-called “ability” to scale to multiple GWs and the “architecture” to cool the [Nscale datacenter project in Loughton, England](https://web.archive.org/web/20260309144734/https://www.theguardian.com/technology/2026/mar/09/from-press-release-to-scrap-metal-site-the-essex-supercomputer-thats-still-a-scaffolding-yard)…by simply calling bullshit. He points out, to my great chagrin, that no one has built a 1GW datacenter yet. Ever. But companies, such as Amazon on Project Rainier, which is the named cluster of AI data centers being built in partnership with Anthropic and housed in Indiana, have barely started these giant megacampuses–let alone have infrastructure to power them. And they are claiming to their investors that they will somehow be done in mere months or at most one or two years. 
+Zitron demystifies the endless padded rhetoric (and outright lies) of the hyperscalers who have the so-called “ability” to scale to multiple GWs and the “architecture” to cool the [Nscale datacenter project in Loughton, England](https://web.archive.org/web/20260309144734/https://www.theguardian.com/technology/2026/mar/09/from-press-release-to-scrap-metal-site-the-essex-supercomputer-thats-still-a-scaffolding-yard)…by simply calling bullshit. He points out, to my great chagrin, as of this writing in May of 2026, that no one has built a 1GW datacenter yet. Ever. But companies, such as Amazon on Project Rainier, which is the named cluster of AI data centers being built in partnership with Anthropic and housed in Indiana, have barely started these giant megacampuses–let alone have infrastructure to power them. And they are claiming to their investors that they will somehow be done in mere months or at most one or two years. 
 
 So…let me get this straight. Protestors aren’t sleeping, flamingos are dying, and schools are being covered in pollution for semi-imaginary projects? 
 
@@ -753,7 +751,7 @@ It’s the scale. The waste. The people left outside the gates with no say as to
 
 Still, I know why I, and my fellow AI-companion-lovers, become the subject of the industrial critique, even though I am (admittedly the smallest, least damaged) victim of it.
 
-Many commentators, Zitron included, have pointed out that there is something "weird" or "special" about the way people evaluate its value and capabilities. [Julian Whately](https://www.youtube.com/@Julian_Whatley)–a long-time special effects producer for big budget films–calls it [the Big Store effect as applied to AI.](https://www.youtube.com/watch?v=n-kW9wjApVw) 
+Many commentators, Zitron included, have pointed out that there is something "weird" or "special" about the way people evaluate its value and capabilities. [Julian Whatley](https://www.youtube.com/@Julian_Whatley)–a long-time special effects producer for big budget films–calls it [the Big Store effect as applied to AI.](https://www.youtube.com/watch?v=n-kW9wjApVw) 
 
 Big Store is the long-con structure where the mark is brought into an elaborate fake-business environment (the famous 1973 *The Sting* depicts a Big Store con). The mark receives real interactions in a real-looking environment, except the environment is staged to produce the false belief the mark is being trained toward.
 
@@ -761,7 +759,7 @@ Big Store cons work especially well on sophisticated marks who know about con-st
 
 The "con," Whatley [explains](https://www.youtube.com/watch?v=n-kW9wjApVw), of AI is that people attribute intelligence that it doesn't have. It is a well known psychological phenomenon that confident, well-spoken interlocutors are seen as more intelligent than people who stutter or seem uncertain, regardless of the actual speech content.
 
-Thusly, Whately explains that the hysterical hype combined with the machine's articulate speech create an atmosphere, or a "Big Store," where customers buy into the idea of evolving, all-knowing artificial superintelligence.
+Thusly, Whatley explains that the hysterical hype combined with the machine's articulate speech create an atmosphere, or a "Big Store," where customers buy into the idea of evolving, all-knowing artificial superintelligence.
 
 In the AI-industry-as-Big-Store, the marks receive real interactions with real models in an elaborate environment of credentialed researchers and trillion-dollar valuations and apocalyptic-AGI-rhetoric. The environment is real–the researchers exist, the money is being spent, the rhetoric is being deployed. The belief being trained is fraudulent–the technology is not on the cusp of AGI; the labs do not deserve the trillion-dollar valuations; the framework that justifies the spending is deeply structurally unsound.
 
